@@ -36,20 +36,21 @@ let initContractTemplates = new Promise(function(resolve, reject) {
 });
 
 let initContractInstances = new Promise(function(resolve, reject) {
-    var instances = {};
+    var contracts = {
+        templates : {},
+        instances : {}
+    };
     initContractTemplates.then(results => {
-        console.log(results.ECRecovery);
-        console.log(Addresses.ecrecovery);
         results.ECRecovery.at(Addresses.ecrecovery).then(function(ecRecoveryInstance) {
-            instances.ecrecovery = ecRecoveryInstance;
+            contracts.instances.ecrecovery = ecRecoveryInstance;
         
             results.Identities.at(Addresses.identities).then(identitiesInstance => {
-                instances.identities = identitiesInstance;
+                contracts.instances.identities = identitiesInstance;
                 
                 results.Documents.at(Addresses.documents).then(documentsInstance => {
-                    instances.documents = documentsInstance;
-
-                    resolve(instances);
+                    contracts.instances.documents = documentsInstance;
+                    contracts.templates = results;
+                    resolve(contracts);
                 });
                 
             });

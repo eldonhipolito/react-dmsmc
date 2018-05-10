@@ -5,33 +5,36 @@ import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
+import DefaultContainer from './DefaultContainer'
 
 class App extends Component {
   constructor(props) {
     super(props);
-
+   
     this.state = {
       contractInstances : {},
-      someText : "vale",
+      contractTemplates : {},
     }
-
-  }
-
-  componentDidMount() {
     this.instantiateContract();
+
   }
+
+
 
   instantiateContract() {
-    context.initContractInstances.then(instances => {
-      this.setState({contractInstances : instances,
-      someText : instances.identities.address});
+    console.log("Instantiating...");
+    context.initContractInstances.then(contracts => {
+    
+      this.setState({contractInstances : contracts.instances,
+      contractTemplates : contracts.templates});
     });
   }
 
   render() {
+
     return (
-      <div id="mamaw">
-        {this.state.someText}
+      <div id="genesisContainer">
+        <DefaultContainer instances={this.state.contractInstances} templates={this.state.contractTemplates} />
       </div>
     );
   }
