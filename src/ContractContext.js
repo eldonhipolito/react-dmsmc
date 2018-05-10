@@ -1,7 +1,0 @@
-import React, { Component } from 'react'
-import IdentitiesContract from '../build/contracts/Identities.json'
-import DocumentsContract from '../build/contracts/Documents.json'
-import ECRecoveryContract from '../build/contracts/ECRecovery.json'
-import IdentityContract from '../build/contracts/Identity.json'
-import DocumentContract from '../build/contracts/Document.json'
-import getWeb3 from './utils/getWeb3'

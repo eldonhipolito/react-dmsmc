@@ -4,7 +4,7 @@ import './SignableDocument.sol';
 
 import './CustomOwnership.sol';
 
-import 'zeppelin-solidity/contracts/ECRecovery.sol';
+import 'openzeppelin-solidity/contracts/ECRecovery.sol';
 
 import './SelfSignatureVerifiable.sol';
 

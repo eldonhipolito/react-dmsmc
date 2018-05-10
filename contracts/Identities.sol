@@ -1,15 +1,15 @@
 pragma solidity ^0.4.18;
 
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-import 'zeppelin-solidity/contracts/ownership/rbac/RBAC.sol';
+import "openzeppelin-solidity/contracts/ownership/rbac/RBACWithAdmin.sol";
 
 /**
 @title Identities
 @author Eldon Hipolito
 @dev This contract is used as a registry for identities, and acts as the role based access control.
 */
-contract Identities is Ownable, RBAC {
+contract Identities is Ownable, RBACWithAdmin {
 
 
     struct VerificationData {

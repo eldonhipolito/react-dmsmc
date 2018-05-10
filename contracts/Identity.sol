@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-import 'zeppelin-solidity/contracts/ECRecovery.sol';
+import 'openzeppelin-solidity/contracts/ECRecovery.sol';
 import './SelfSignatureVerifiable.sol';
 
 /**

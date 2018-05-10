@@ -2,7 +2,7 @@ pragma solidity ^0.4.18;
 
 import './Document.sol';
 
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
+import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
 import './IdentitiesIntf.sol';
 
