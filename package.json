@@ -52,7 +52,8 @@
     "dotenv": "^2.0.0",
     "openzeppelin-solidity": "1.9.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-materialize": "^2.2.0"
   },
   "scripts": {
     "start": "node scripts/start.js",

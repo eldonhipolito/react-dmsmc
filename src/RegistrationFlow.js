@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import RegistrationForm from './RegistrationForm'
 import RequestVerificationForm from './RequestVerificationForm'
 
+import {Button, Icon, Row, Input, Col} from 'react-materialize'
+
 class RegistrationFlow extends Component {
 
 constructor(props){
@@ -35,9 +37,13 @@ render() {
     (<RequestVerificationForm instances = {this.props.instances} templates = {this.props.templates} identityAddress = {this.state.identityAddress} txHash = {this.state.txHash} onCompleteVerificationReq={(param) => this.completeVerificationReq(param)} />);
     return (
 
-        <div className="registrationFlow">
-            {curForm}
-        </div>
+        <Row>
+            <Col s={3} />
+            <Col s={6}>
+                {curForm}
+            </Col>
+            <Col s={3} />
+        </Row>
     );
 
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import {Button, Icon, Row, Input, Col} from 'react-materialize'
+
 class RequestVerificationForm extends Component {
 
     constructor(props) {
@@ -18,13 +20,17 @@ class RequestVerificationForm extends Component {
 
     render() {
         return (
-                <div className="reqVerification-form">
+                <div id="reqVerificationForm">
+                <Row>
                 <form onSubmit={this.handleSubmit}>
-                    <label> Identity address: </label>
-                    <input type="text" name="identityAddress" value={this.props.identityAddress} />
-                    <button type="submit"> Submit </button>
+
+                    <Input label="Identity address" name="identityAddress" s={3} value={this.props.identityAddress} />
+                    <Col s={3}> <Button waves='light'>Request Verification</Button> </Col>
                 </form>
-              <h2> Tx request hash :  {this.props.txHash} </h2>
+                </Row>
+                <Row>
+                 <h2> Tx request hash :  {this.props.txHash} </h2>
+              </Row>
               </div>
         );
 
