@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import RegistrationForm from './RegistrationForm'
+import RegistrationFlow from './RegistrationFlow'
 
 class DefaultContainer extends Component {
 
@@ -14,7 +14,7 @@ class DefaultContainer extends Component {
         const val = Object.keys(this.props.instances).length !== 0 ? this.props.instances.identities.address : "";
         return (
             <div id="registrationcontainer">
-                <RegistrationForm />
+                <RegistrationFlow templates = {this.props.templates} instances = {this.props.instances} />
             </div>
         );
     }

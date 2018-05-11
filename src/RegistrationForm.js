@@ -14,8 +14,12 @@ class RegistrationForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log("Submitted!");
+        
+        this.props.templates.Identity.new(this.state.username, this.state.name).then((result) => {
+            this.props.onRegistrationComplete(result.address);
+        });
     }
+
 
     handleTextChange(e) {
         this.setState(
@@ -28,6 +32,7 @@ class RegistrationForm extends Component {
     render() {
 
         return (
+                <div className="registration-form">
                 <form onSubmit={this.handleSubmit}>
                     <label> Username: </label>
                         <input type="text" name="username" value={this.state.username} onChange={this.handleTextChange} />
@@ -35,7 +40,7 @@ class RegistrationForm extends Component {
                     <input type="text" name="name" value={this.state.name} onChange={this.handleTextChange} />
                     <button type="submit"> Submit </button>
                 </form>
-
+              </div>
         );
 
 

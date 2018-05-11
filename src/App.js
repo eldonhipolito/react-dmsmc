@@ -14,9 +14,13 @@ class App extends Component {
     this.state = {
       contractInstances : {},
       contractTemplates : {},
+      loaded : false,
     }
-    this.instantiateContract();
+    
+  }
 
+  componentDidMount(){
+    this.instantiateContract();
   }
 
 
@@ -26,15 +30,17 @@ class App extends Component {
     context.initContractInstances.then(contracts => {
     
       this.setState({contractInstances : contracts.instances,
-      contractTemplates : contracts.templates});
+      contractTemplates : contracts.templates,
+    loaded : true});
     });
   }
 
   render() {
-
+    const container = this.state.loaded ? (
+    <DefaultContainer instances={this.state.contractInstances} templates={this.state.contractTemplates} />) : ("");
     return (
       <div id="genesisContainer">
-        <DefaultContainer instances={this.state.contractInstances} templates={this.state.contractTemplates} />
+          {container}
       </div>
     );
   }

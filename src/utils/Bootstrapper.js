@@ -25,12 +25,16 @@ let initContractTemplates = new Promise(function(resolve, reject) {
         templates.Identity.setProvider(web3Instance.currentProvider);
         templates.Document = truffleContract(DocumentContract);
         templates.Document.setProvider(web3Instance.currentProvider);
-        templates.web3Instance = web3Instance;
-
-       templates.Identity.detectNetwork().then(function(){
+        
+       
+        templates.Identity.detectNetwork().then(function(){
             templates.Identity.link("ECRecovery", Addresses.ecrecovery);
+            //templates.Identity.defaults({from : web3Instance.eth.accounts[0]});
+            setFromDefaults(templates,web3Instance);
+            templates.web3Instance = web3Instance;
             resolve(templates);
         });
+        
         
     });
 });
@@ -59,5 +63,11 @@ let initContractInstances = new Promise(function(resolve, reject) {
 
     });
 });
+
+function setFromDefaults(contrs, web3) {
+    Object.values(contrs).map((con) => {
+        con.defaults({from : web3.eth.accounts[0]});
+    })
+}
 
 export {initContractTemplates, initContractInstances};
