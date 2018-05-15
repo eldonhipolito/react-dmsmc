@@ -4,7 +4,11 @@ import React, { Component } from 'react'
 import RegistrationForm from './RegistrationForm'
 import RequestVerificationForm from './RequestVerificationForm'
 
-import {Button, Icon, Row, Input, Col} from 'react-materialize'
+import RegistrationCompleted from './RegistrationCompleted'
+
+import CenteredContentGrid from './MicroComponents/CenteredContentGrid'
+
+import {Button, Icon, Row, Input, Col, Breadcrumb, MenuItem} from 'react-materialize'
 
 class RegistrationFlow extends Component {
 
@@ -14,36 +18,55 @@ constructor(props){
     this.state = {
         identityAddress : "",
         txHash : "",
-        step : "registration",
+        step : 1,
     }
 }
 
 completeRegistration(res) {
     this.setState({
         identityAddress : res,
-        step : "reqVerification"
+        step : 2
     });
 }
 
 completeVerificationReq(res) {
     this.setState({
-        txHash : res
+        txHash : res,
+        step : 3
     });
 }
-
+currentForm() {
+    switch(this.state.step) {
+        case 1 :
+        return (<RegistrationForm instances = {this.props.instances} templates = {this.props.templates} onRegistrationComplete={(param) => this.completeRegistration(param)} />);
+        case 2:
+        return  (<RequestVerificationForm instances = {this.props.instances} templates = {this.props.templates} identityAddress = {this.state.identityAddress} txHash = {this.state.txHash} onCompleteVerificationReq={(param) => this.completeVerificationReq(param)} />);
+        case 3 : 
+        return (<RegistrationCompleted txHash = {this.state.txHash} identityAddress = {this.state.identityAddress} />);
+    }
+}
 render() {
 
-    const curForm =  this.state.step === "registration" ? (<RegistrationForm instances = {this.props.instances} templates = {this.props.templates} onRegistrationComplete={(param) => this.completeRegistration(param)} />) : 
-    (<RequestVerificationForm instances = {this.props.instances} templates = {this.props.templates} identityAddress = {this.state.identityAddress} txHash = {this.state.txHash} onCompleteVerificationReq={(param) => this.completeVerificationReq(param)} />);
-    return (
 
-        <Row>
-            <Col s={3} />
-            <Col s={6}>
-                {curForm}
-            </Col>
-            <Col s={3} />
-        </Row>
+    const flow = [<MenuItem key="registration"> Identity Creation </MenuItem>];
+
+    if(this.state.step >= 2) {
+        flow.push(<MenuItem key="reqVerification"> Verify your identity </MenuItem>);
+    }
+    if(this.state.step == 3) {
+        flow.push(<MenuItem key="completed"> Registration completed </MenuItem>)
+    }
+    return (
+        <div>
+            <CenteredContentGrid>
+                    <Breadcrumb>
+                    {flow}
+                    </Breadcrumb>
+            </CenteredContentGrid>
+            <CenteredContentGrid>
+                {this.currentForm()}
+            </CenteredContentGrid>
+        </div>
     );
 
 }

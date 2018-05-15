@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 
-import {Button, Icon, Row, Input, Col} from 'react-materialize'
+import {Button, Icon, Row, Input, Col, ProgressBar} from 'react-materialize'
+
+import Submit from './MicroComponents/Submit'
+
+import ErrorPrompt from './MicroComponents/ErrorPrompt'
+
+import InfiniteProgressBar from './MicroComponents/InfiniteProgressBar'
 
 class RegistrationForm extends Component {
 
@@ -9,6 +15,8 @@ class RegistrationForm extends Component {
         this.state = {
             username : "",
             name : "",
+            submitted: false,
+            showError : false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
@@ -16,9 +24,15 @@ class RegistrationForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        
+        this.setState({submitted : true});
         this.props.templates.Identity.new(this.state.username, this.state.name).then((result) => {
             this.props.onRegistrationComplete(result.address);
+        }).catch((err) => {
+            if(err.message.startsWith("Error: MetaMask Tx Signature: User denied transaction signature.")) {
+                this.setState({submitted : false});
+            } else {
+               this.setState({showError : true});
+            }
         });
     }
 
@@ -33,15 +47,22 @@ class RegistrationForm extends Component {
 
     render() {
 
+       
         return (
             <div id="registrationForm">
-                <Row>  
+                 
                 <form onSubmit={this.handleSubmit}>
-                   <Input placeholder="Username" label="Username" name="username" s={6} value={this.state.username} onChange={this.handleTextChange} />
-                   <Input placeholder="Name" label="Name" name="name" value={this.state.name} s={4} onChange={this.handleTextChange} />
-                  <Col s={2}> <Button waves='light' large>Submit </Button> </Col>
+                <InfiniteProgressBar visible={this.state.submitted} />
+                <Row> 
+                   <Input placeholder="Username" label="Username" name="username" s={12} value={this.state.username} onChange={this.handleTextChange} />
+                </Row>
+                <Row>
+                   <Input placeholder="Name" label="Name" name="name" value={this.state.name} s={12} onChange={this.handleTextChange} />
+                </Row>
+                <Submit disabled={this.state.submitted} />
+                <ErrorPrompt visible={this.state.showError} />
                 </form>
-              </Row>
+              
                
              </div>
         );
