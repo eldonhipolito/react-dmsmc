@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import RowEntryAction from './RowEntryAction';
 
-
-import {Button, Icon} from 'react-materialize'
-
+import Identities from './utils/Identities'
+import {Icon} from 'react-materialize'
 
 
 
@@ -15,9 +14,11 @@ class IdentityVerificationList extends Component {
         this.state = {
             list : [],
             submitted : false,
+            identities : new Identities(this.props.instances.identities, this.props.templates.Identity),
         };
     }
     componentDidMount() {
+        /*
         this.props.instances.identities.requestsCount.call().then((rqCount) => {
             for(let ndx = 0; ndx < rqCount; ndx++) {
                this.getIdentity(ndx, rqCount);
@@ -25,8 +26,14 @@ class IdentityVerificationList extends Component {
             }
 
         });
+        */
+      this.state.identities.listUnverified().then((result) => {
+        console.log(result);
+        this.setState({list : result});
+      });
+     
     }
-
+    /*
     getIdentity(ndx, rqCount) {
         this.props.instances.identities.singleVerRequest(ndx).then((res) => {
             let userAddress = res[0];
@@ -49,16 +56,19 @@ class IdentityVerificationList extends Component {
        });
       });
     }
+    */
 
     verifyClicked(ndx){
         let entry = this.state.list[ndx];
 
         this.props.instances.identities.verifyIdentity(entry.userAddress, entry.identity).then((result) => {
             console.log("Verified");
-            this.setState((prevState) => ({
-                list : prevState.list.splice(ndx, 1),
+            let newList = [...this.state.list];
+            newList.splice(ndx, 1);
+            this.setState({
+                list : newList,
                 submitted : false
-            }));
+            });
 
         }).catch((err) => {
             console.log(err);
@@ -75,6 +85,7 @@ class IdentityVerificationList extends Component {
                 <td>{entry.name}</td>
                 <td>{entry.identity}</td>
                 <td>{entry.userAddress}</td>
+                <td>{entry.timestamp.toUTCString()} </td>
                 <td><RowEntryAction value={i} submitted={this.state.submitted} parentClicked={(param) => this.verifyClicked(param)}>
                         Verify<Icon left>verified_user</Icon>
                     </RowEntryAction>
@@ -91,6 +102,7 @@ class IdentityVerificationList extends Component {
                         <th data-field="name">Name</th>
                         <th data-field="identity">Identity</th>
                         <th data-field="publicAddress"> Public address </th>
+                        <th data-field="timestamp"> Date requested </th>
                         <th> Action </th>
                     </tr>
                 </thead>

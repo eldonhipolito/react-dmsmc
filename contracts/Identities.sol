@@ -20,6 +20,8 @@ contract Identities is Ownable, RBACWithAdmin {
 
     // Mapping of user address to identity
     mapping(address => address) public identities;
+    //For iterating registered identities
+    address[] public registeredIdentities;
 
     // Mapping of user address to identity
     mapping(address => address) public unverifiedIdentities;
@@ -60,9 +62,10 @@ contract Identities is Ownable, RBACWithAdmin {
 
         identities[user] = identity;
         unverifiedIdentities[user] = address(0);
+        registeredIdentities.push(user);
         rmvUnverifiedIdn(user);
         adminAddRole(user, ROLE_VERIFIED_IDENTITY);
-        IdentityVerified(msg.sender, user, identity);
+        emit IdentityVerified(msg.sender, user, identity);
     }
 
     /**
@@ -94,7 +97,7 @@ contract Identities is Ownable, RBACWithAdmin {
         requests.push(VerificationData(msg.sender, identity, block.timestamp));
         unverifiedIdentities[msg.sender] = identity;
 
-        IdentityVerificationRequested(msg.sender, identity);
+        emit IdentityVerificationRequested(msg.sender, identity);
     }
 
     function singleVerRequest(uint ndx) external view returns(address, address, uint256) {
@@ -103,6 +106,10 @@ contract Identities is Ownable, RBACWithAdmin {
 
     function requestsCount() external view returns(uint) {
         return requests.length;
+    }
+
+    function registeredIdentitiesCount() external view returns(uint) {
+        return registeredIdentities.length;
     }
 
 
