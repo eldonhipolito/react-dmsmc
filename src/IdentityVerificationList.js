@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import VerifyAction from './VerifyAction';
+import RowEntryAction from './RowEntryAction';
+
+
+import {Button, Icon} from 'react-materialize'
 
 
 
@@ -11,8 +14,7 @@ class IdentityVerificationList extends Component {
 
         this.state = {
             list : [],
-            selectedIndex : -1,
-            listCompleted : false,
+            submitted : false,
         };
     }
     componentDidMount() {
@@ -49,7 +51,18 @@ class IdentityVerificationList extends Component {
     }
 
     verifyClicked(ndx){
+        let entry = this.state.list[ndx];
 
+        this.props.instances.identities.verifyIdentity(entry.userAddress, entry.identity).then((result) => {
+            console.log("Verified");
+            this.setState((prevState) => ({
+                list : prevState.list.splice(ndx, 1),
+                submitted : false
+            }));
+
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
 
@@ -62,13 +75,16 @@ class IdentityVerificationList extends Component {
                 <td>{entry.name}</td>
                 <td>{entry.identity}</td>
                 <td>{entry.userAddress}</td>
-                <td><VerifyAction value={i} verifyClicked={(param) => this.verifyClicked(param)} /></td>
+                <td><RowEntryAction value={i} submitted={this.state.submitted} parentClicked={(param) => this.verifyClicked(param)}>
+                        Verify<Icon left>verified_user</Icon>
+                    </RowEntryAction>
+                </td>
             </tr>
             )
         );
         console.log(items);
         return(
-            <table>
+            <table className="highlight centered responsive-table">
                 <thead>
                     <tr>
                         <th data-field="username">Username</th>

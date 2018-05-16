@@ -48,13 +48,13 @@ currentForm() {
 render() {
 
 
-    const flow = [<MenuItem key="registration"> Identity Creation </MenuItem>];
+    const flow = [<MenuItem key="registration"> Create </MenuItem>];
 
     if(this.state.step >= 2) {
-        flow.push(<MenuItem key="reqVerification"> Verify your identity </MenuItem>);
+        flow.push(<MenuItem key="reqVerification"> Verify </MenuItem>);
     }
     if(this.state.step == 3) {
-        flow.push(<MenuItem key="completed"> Registration completed </MenuItem>)
+        flow.push(<MenuItem key="completed"> Completed </MenuItem>)
     }
     return (
         <div>
