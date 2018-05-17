@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import {Button} from 'react-materialize'
 import RowEntryAction from '../RowEntryAction';
 
 
@@ -9,27 +8,23 @@ class RoleActions extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            submitted : false,
-        }
+   
         this.handleAddRole = this.handleAddRole.bind(this);
     }
 
-    handleAddRole(role){
-        console.log(this.props.ndx);
-        console.log(role);
+    handleAddRole(roleIndex){
+        this.props.parentHandler(this.props.ndx, this.props.roles[roleIndex].role, roleIndex);
     }
 
     render() {
 
         const actions = this.props.roles.map((entry, i) => (
            !entry.hasRole ? 
-            <RowEntryAction key = {entry.role} value={entry.role} submitted={this.state.submitted} parentClicked={(param) => this.handleAddRole(param)}>
-                Add {entry.role} role
+            <RowEntryAction key = {entry.role} value={i} disabled={this.props.submitted} parentClicked={(param) => this.handleAddRole(param)}>
+                Make {entry.role}
             </RowEntryAction> : (null)
 
         ));
-        console.log(actions);
         return (
             <div>
             {actions}

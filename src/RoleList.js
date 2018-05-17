@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Identities from './utils/Identities'
-import RoleActions from './MicroComponents/RoleActions';
+import RoleEntry from './RoleEntry';
 
 
 class RoleList extends Component {
@@ -12,50 +12,32 @@ class RoleList extends Component {
 
         this.state = {
             list : [],
-            submitted : false,
             identities : new Identities(this.props.instances.identities, this.props.templates.Identity),
         };
+
+        this.parentHandler = this.parentHandler.bind(this);
     }
     componentDidMount() {
-        /*
-        this.props.instances.identities.requestsCount.call().then((rqCount) => {
-            for(let ndx = 0; ndx < rqCount; ndx++) {
-               this.getIdentity(ndx, rqCount);
-                
-            }
 
-        });
-        */
       this.state.identities.listVerified().then((result) => {
-          console.log(result);
         this.setState({list : result});
       });
      
     }
 
-    formatRoles(roles){
-        let strRoles = "";
-        console.log(roles);
-        for(let i = 0; i < roles.length; i++) {
-            strRoles = roles[i].hasRole ? strRoles + "," + roles[i].role : strRoles;
-        }
-        return strRoles.substr(1, strRoles.length);
+    parentHandler(ndx, newIdn){
+        let newList = [...this.state.list];
+        newList[ndx] = newIdn;
+        this.setState({list : newList});
     }
 
 
     render() {
         const items = this.state.list.map((entry, i) =>
         (
-        <tr key={i}>
-            <td>{entry.userId}</td>
-            <td>{entry.name}</td>
-            <td>{entry.identity}</td>
-            <td>{entry.userAddress}</td>
-            <td>{this.formatRoles(entry.roles)} </td>
-            <td> 
-                <RoleActions ndx = {i} roles = {entry.roles} />
-            </td>
-        </tr>
+            <RoleEntry key = {i} ndx = {i} instances = {this.props.instances} 
+            identities = {this.state.identities} parentHandler = {(ndx, newIdn) => this.parentHandler(ndx, newIdn)} 
+            entry = {entry}/>
         )
     );
         return(
