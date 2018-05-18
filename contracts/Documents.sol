@@ -1,13 +1,13 @@
 pragma solidity ^0.4.18;
 
-import './Document.sol';
+import "./Document.sol";
 
-import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-import './IdentitiesIntf.sol';
+import "./IdentitiesIntf.sol";
 
 
-import './OwnableIntf.sol';
+import "./OwnableIntf.sol";
 
 
 contract Documents is Ownable {
@@ -36,7 +36,7 @@ contract Documents is Ownable {
         documents[count] = doc;
         documentOwnership[msg.sender].push(count);
 
-        DocumentCreated(count, doc, msg.sender);
+        emit DocumentCreated(count, doc, msg.sender);
     }
 
     function transferDocumentOwnership(uint256 documentId, address newOwner) external {
@@ -49,8 +49,7 @@ contract Documents is Ownable {
         removeDocOwnership(uint(ownedNdx));
         OwnableIntf(documents[documentId]).transferOwnership(newOwner);
 
-        DocumentOwnershipTransferred(documentId, msg.sender, newOwner);
-
+        emit DocumentOwnershipTransferred(documentId, msg.sender, newOwner);
 
     }
 

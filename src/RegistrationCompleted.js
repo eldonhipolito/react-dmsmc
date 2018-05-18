@@ -11,8 +11,8 @@ class RegistrationCompleted extends Component {
             <Row>
                 <Col s={12}>
                     <Card className="blue-grey" textClassName="white-text" title="Identity">
-                        <span className="white-text"> {this.props.identityAddress} </span>
-                        <span className="white-text"> {this.props.txHash} </span>
+                        <span className="white-text"> {this.props.args.address} </span>
+                        <span className="white-text"> {this.props.args.txHash} </span>
                     </Card>
                 </Col>
             </Row>

@@ -44,14 +44,14 @@
     "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/SignableDocument.sol",
     "exportedSymbols": {
       "SignableDocument": [
-        1150
+        694
       ]
     },
-    "id": 1151,
+    "id": 695,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1137,
+        "id": 681,
         "literals": [
           "solidity",
           "^",
@@ -59,7 +59,7 @@
           ".18"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:9"
+        "src": "0:24:6"
       },
       {
         "baseContracts": [],
@@ -67,9 +67,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1150,
+        "id": 694,
         "linearizedBaseContracts": [
-          1150
+          694
         ],
         "name": "SignableDocument",
         "nodeType": "ContractDefinition",
@@ -77,7 +77,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1144,
+            "id": 688,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -85,16 +85,16 @@
             "name": "sign",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1142,
+              "id": 686,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1139,
+                  "id": 683,
                   "name": "hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1144,
-                  "src": "78:12:9",
+                  "scope": 688,
+                  "src": "78:12:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -102,10 +102,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1138,
+                    "id": 682,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "78:7:9",
+                    "src": "78:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -116,11 +116,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1141,
+                  "id": 685,
                   "name": "sig",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1144,
-                  "src": "92:9:9",
+                  "scope": 688,
+                  "src": "92:9:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -128,10 +128,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 1140,
+                    "id": 684,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "92:5:9",
+                    "src": "92:5:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -141,17 +141,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "77:25:9"
+              "src": "77:25:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1143,
+              "id": 687,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "111:0:9"
+              "src": "111:0:6"
             },
-            "scope": 1150,
-            "src": "64:48:9",
+            "scope": 694,
+            "src": "64:48:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -159,7 +159,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1149,
+            "id": 693,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -167,16 +167,16 @@
             "name": "addSigner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1147,
+              "id": 691,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1146,
+                  "id": 690,
                   "name": "signer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1149,
-                  "src": "139:14:9",
+                  "scope": 693,
+                  "src": "139:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -184,10 +184,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1145,
+                    "id": 689,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "139:7:9",
+                    "src": "139:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -197,40 +197,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "138:16:9"
+              "src": "138:16:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1148,
+              "id": 692,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "163:0:9"
+              "src": "163:0:6"
             },
-            "scope": 1150,
-            "src": "120:44:9",
+            "scope": 694,
+            "src": "120:44:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1151,
-        "src": "28:141:9"
+        "scope": 695,
+        "src": "28:141:6"
       }
     ],
-    "src": "0:171:9"
+    "src": "0:171:6"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/SignableDocument.sol",
     "exportedSymbols": {
       "SignableDocument": [
-        1150
+        694
       ]
     },
-    "id": 1151,
+    "id": 695,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1137,
+        "id": 681,
         "literals": [
           "solidity",
           "^",
@@ -238,7 +238,7 @@
           ".18"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:9"
+        "src": "0:24:6"
       },
       {
         "baseContracts": [],
@@ -246,9 +246,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1150,
+        "id": 694,
         "linearizedBaseContracts": [
-          1150
+          694
         ],
         "name": "SignableDocument",
         "nodeType": "ContractDefinition",
@@ -256,7 +256,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1144,
+            "id": 688,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -264,16 +264,16 @@
             "name": "sign",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1142,
+              "id": 686,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1139,
+                  "id": 683,
                   "name": "hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1144,
-                  "src": "78:12:9",
+                  "scope": 688,
+                  "src": "78:12:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -281,10 +281,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1138,
+                    "id": 682,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "78:7:9",
+                    "src": "78:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -295,11 +295,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1141,
+                  "id": 685,
                   "name": "sig",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1144,
-                  "src": "92:9:9",
+                  "scope": 688,
+                  "src": "92:9:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -307,10 +307,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 1140,
+                    "id": 684,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "92:5:9",
+                    "src": "92:5:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -320,17 +320,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "77:25:9"
+              "src": "77:25:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1143,
+              "id": 687,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "111:0:9"
+              "src": "111:0:6"
             },
-            "scope": 1150,
-            "src": "64:48:9",
+            "scope": 694,
+            "src": "64:48:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -338,7 +338,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1149,
+            "id": 693,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -346,16 +346,16 @@
             "name": "addSigner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1147,
+              "id": 691,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1146,
+                  "id": 690,
                   "name": "signer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1149,
-                  "src": "139:14:9",
+                  "scope": 693,
+                  "src": "139:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -363,10 +363,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1145,
+                    "id": 689,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "139:7:9",
+                    "src": "139:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -376,27 +376,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "138:16:9"
+              "src": "138:16:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1148,
+              "id": 692,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "163:0:9"
+              "src": "163:0:6"
             },
-            "scope": 1150,
-            "src": "120:44:9",
+            "scope": 694,
+            "src": "120:44:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1151,
-        "src": "28:141:9"
+        "scope": 695,
+        "src": "28:141:6"
       }
     ],
-    "src": "0:171:9"
+    "src": "0:171:6"
   },
   "compiler": {
     "name": "solc",
@@ -404,5 +404,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-10T05:52:32.934Z"
+  "updatedAt": "2018-05-18T07:46:47.163Z"
 }

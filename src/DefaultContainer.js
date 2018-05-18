@@ -86,7 +86,6 @@ class DefaultContainer extends Component {
                        <NavItem onClick={() => this.handleRouting("/register")}> Register </NavItem>
                        <NavItem onClick={() => this.handleRouting("/verify")}> Verify </NavItem>
                        <NavItem onClick={() => this.handleRouting("/roles")}> Role list </NavItem>
-                       <NavItem href="/api/hello"> Rinku starto! </NavItem>
                    </Navbar>
                </Col>
            </Row>

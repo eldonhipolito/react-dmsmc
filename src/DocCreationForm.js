@@ -7,6 +7,9 @@ import Submit from './MicroComponents/Submit'
 import ErrorPrompt from './MicroComponents/ErrorPrompt'
 
 import InfiniteProgressBar from './MicroComponents/InfiniteProgressBar'
+import CenteredContentGrid from './MicroComponents/CenteredContentGrid';
+import Documents from './utils/Documents';
+
 
 class DocCreationForm extends Component {
 
@@ -17,6 +20,9 @@ class DocCreationForm extends Component {
             checksum : "",
             submitted: false,
             showError : false,
+            paused : false,
+            fileName : "",
+            documents : new Documents(this.props.instances.documents),
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
@@ -25,18 +31,14 @@ class DocCreationForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        /*
+
         this.setState({submitted : true});
-        this.props.templates.Identity.new(this.state.username, this.state.name).then((result) => {
-            this.props.onRegistrationComplete(result.address);
-        }).catch((err) => {
-            if(err.message.startsWith("Error: MetaMask Tx Signature: User denied transaction signature.")) {
-                this.setState({submitted : false});
-            } else {
-               this.setState({showError : true});
-            }
+        this.state.documents.create(this.state.docName, this.state.checksum).then((res) => {
+
+            
+
         });
-        */
+
     }
 
 
@@ -49,14 +51,24 @@ class DocCreationForm extends Component {
     }
 
     handleUpload(e) {
+        this.setState({paused : true, fileName : e.target.value});
         console.log(e.target.value);
+        
+        var formData  = new FormData();
+        formData.append("file", e.target.files[0]);
+        fetch('/api/computeChecksum', {
+            method : 'POST',
+            body : formData,
+        }).then((res) =>{
+           res.text().then((txt) => {this.setState({checksum : txt, paused : false})});
+        });
     }
 
     render() {
 
        
         return (
-            <div id="docCreationForm">
+            <CenteredContentGrid>
                  
                 <form onSubmit={this.handleSubmit}>
                 <InfiniteProgressBar visible={this.state.submitted} />
@@ -64,22 +76,27 @@ class DocCreationForm extends Component {
                    <Input placeholder="Document label" label="Document label" name="docName" s={12} value={this.state.docName} onChange={this.handleTextChange} />
                 </Row>
                 <Row>
+                    
                     <div className="file-field input-field">
-                    <div className="btn">
+                    <Col s={12}>
+                    <div className="btn btn-large">
                         <span>File</span>
                         <input type="file" onChange={this.handleUpload}/>
                     </div>
                     <div className="file-path-wrapper">
-                        <Input placeholder="Document checksum" label="Checksum" name="checksum" s={12} value={this.state.checksum} />
+                        <input class="file-path validate" type="text" value={this.state.fileName}/>
                     </div>
+                    </Col>
                     </div>
                 </Row>
-                <Submit disabled={this.state.submitted} />
+                <Row>
+                    <Input placeholder="Document checksum" label="Checksum" name="checksum" s={12} value={this.state.checksum} />
+                </Row>
+                <Submit disabled={this.state.submitted || this.state.paused} />
                 <ErrorPrompt visible={this.state.showError} />
                 </form>
-              
                
-             </div>
+             </CenteredContentGrid>
         );
 
 

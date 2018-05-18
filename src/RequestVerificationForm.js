@@ -26,12 +26,15 @@ class RequestVerificationForm extends Component {
         this.setState({
             submitted : true
         });
-        this.props.instances.identities.reqIdnVerification(this.props.identityAddress).then((result) => {
-            this.props.onCompleteVerificationReq(result.tx);
+        this.props.instances.identities.reqIdnVerification(this.props.args.address).then((result) => {
+            let args = JSON.parse(JSON.stringify(this.props.args));
+            args.txHash = result.tx;
+            this.props.parentHandler(this.props.stepNum, args);
         }).catch(err => {
             if(err.message.startsWith("Error: MetaMask Tx Signature: User denied transaction signature.")) {
                 this.setState({submitted : false, showError : false});
             } else {
+                console.log(err);
                 this.setState({showError : true});
             }
         });
@@ -45,7 +48,7 @@ class RequestVerificationForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <InfiniteProgressBar visible={this.state.submitted} />
                     <Row>
-                    <Input label="Your Identity address" name="identityAddress" s={12} value={this.props.identityAddress} />
+                    <Input label="Your Identity address" name="identityAddress" s={12} value={this.props.args.address} />
                     </Row>
                     <Submit disabled={this.state.submitted} />
                     <ErrorPrompt visible={this.state.showError} />

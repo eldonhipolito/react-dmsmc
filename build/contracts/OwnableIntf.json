@@ -26,14 +26,14 @@
     "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/OwnableIntf.sol",
     "exportedSymbols": {
       "OwnableIntf": [
-        1123
+        667
       ]
     },
-    "id": 1124,
+    "id": 668,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1117,
+        "id": 661,
         "literals": [
           "solidity",
           "^",
@@ -41,7 +41,7 @@
           ".18"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:7"
+        "src": "0:24:4"
       },
       {
         "baseContracts": [],
@@ -49,9 +49,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1123,
+        "id": 667,
         "linearizedBaseContracts": [
-          1123
+          667
         ],
         "name": "OwnableIntf",
         "nodeType": "ContractDefinition",
@@ -59,7 +59,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1122,
+            "id": 666,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -67,16 +67,16 @@
             "name": "transferOwnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1120,
+              "id": 664,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1119,
+                  "id": 663,
                   "name": "newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1122,
-                  "src": "84:16:7",
+                  "scope": 666,
+                  "src": "84:16:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -84,10 +84,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1118,
+                    "id": 662,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "84:7:7",
+                    "src": "84:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -97,40 +97,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "83:18:7"
+              "src": "83:18:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1121,
+              "id": 665,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "108:0:7"
+              "src": "108:0:4"
             },
-            "scope": 1123,
-            "src": "57:52:7",
+            "scope": 667,
+            "src": "57:52:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1124,
-        "src": "28:86:7"
+        "scope": 668,
+        "src": "28:86:4"
       }
     ],
-    "src": "0:116:7"
+    "src": "0:116:4"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/OwnableIntf.sol",
     "exportedSymbols": {
       "OwnableIntf": [
-        1123
+        667
       ]
     },
-    "id": 1124,
+    "id": 668,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1117,
+        "id": 661,
         "literals": [
           "solidity",
           "^",
@@ -138,7 +138,7 @@
           ".18"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:7"
+        "src": "0:24:4"
       },
       {
         "baseContracts": [],
@@ -146,9 +146,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1123,
+        "id": 667,
         "linearizedBaseContracts": [
-          1123
+          667
         ],
         "name": "OwnableIntf",
         "nodeType": "ContractDefinition",
@@ -156,7 +156,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1122,
+            "id": 666,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -164,16 +164,16 @@
             "name": "transferOwnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1120,
+              "id": 664,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1119,
+                  "id": 663,
                   "name": "newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1122,
-                  "src": "84:16:7",
+                  "scope": 666,
+                  "src": "84:16:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -181,10 +181,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1118,
+                    "id": 662,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "84:7:7",
+                    "src": "84:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -194,27 +194,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "83:18:7"
+              "src": "83:18:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1121,
+              "id": 665,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "108:0:7"
+              "src": "108:0:4"
             },
-            "scope": 1123,
-            "src": "57:52:7",
+            "scope": 667,
+            "src": "57:52:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1124,
-        "src": "28:86:7"
+        "scope": 668,
+        "src": "28:86:4"
       }
     ],
-    "src": "0:116:7"
+    "src": "0:116:4"
   },
   "compiler": {
     "name": "solc",
@@ -222,5 +222,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-10T05:52:32.934Z"
+  "updatedAt": "2018-05-18T07:46:47.163Z"
 }

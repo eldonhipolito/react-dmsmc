@@ -26,7 +26,7 @@ class RegistrationForm extends Component {
         e.preventDefault();
         this.setState({submitted : true});
         this.props.templates.Identity.new(this.state.username, this.state.name).then((result) => {
-            this.props.onRegistrationComplete(result.address);
+            this.props.parentHandler(this.props.stepNum, {address : result.address});
         }).catch((err) => {
             if(err.message.startsWith("Error: MetaMask Tx Signature: User denied transaction signature.")) {
                 this.setState({submitted : false});

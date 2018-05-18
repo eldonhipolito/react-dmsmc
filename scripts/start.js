@@ -166,7 +166,7 @@ function addMiddleware(devServer) {
     // However API calls like `fetch()` won’t generally accept text/html.
     // If this heuristic doesn’t work well for you, don’t use `proxy`.
     htmlAcceptHeaders: proxy ?
-      ['text/html'] :
+      ['text/html', '*/*'] :
       ['text/html', '*/*']
   }));
   if (proxy) {
