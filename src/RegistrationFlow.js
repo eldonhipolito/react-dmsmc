@@ -11,10 +11,6 @@ import FlowComponent from './MicroComponents/FlowComponent';
 
 class RegistrationFlow extends Component {
 
-constructor(props){
-    super(props);
-}
-
 
 render() {
     const steps = [

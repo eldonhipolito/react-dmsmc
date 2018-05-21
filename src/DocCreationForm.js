@@ -34,9 +34,7 @@ class DocCreationForm extends Component {
 
         this.setState({submitted : true});
         this.state.documents.create(this.state.docName, this.state.checksum).then((res) => {
-
-            
-
+            this.props.parentHandler(this.props.stepNum, res);
         });
 
     }
@@ -76,7 +74,6 @@ class DocCreationForm extends Component {
                    <Input placeholder="Document label" label="Document label" name="docName" s={12} value={this.state.docName} onChange={this.handleTextChange} />
                 </Row>
                 <Row>
-                    
                     <div className="file-field input-field">
                     <Col s={12}>
                     <div className="btn btn-large">

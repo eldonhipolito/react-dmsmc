@@ -14,7 +14,16 @@ class Identities {
     }
 
  
+    lookup(userAddress){
+        return new Promise((resolve, reject) => {
+            this.identitiesInstance.identities.call(userAddress).then((idn) => {
+                this.idnUsingAddress(idn).then((res) => {
+                    resolve(res);
+                });                
+            });
 
+        });
+    }
 
 
     listUnverified() {
@@ -50,22 +59,30 @@ class Identities {
     }
 
     idn(ndx){
-      
         return new Promise((resolve, reject) => {
             this.identitiesInstance.registeredIdentities.call(ndx).then((userAddress) => {
                 this.identitiesInstance.identities.call(userAddress).then((identity) =>{
-                this.identityTemplate.at(identity).then((inst) =>{
-                    inst.userId.call().then((userId) => {
-                        inst.name.call().then((name) => {
-                            this.getIdnRoles(userAddress).then((roles) =>{
-                                resolve({userId : userId, name : name, identity : identity, userAddress : userAddress, roles : roles});
-                            });                   
-                        });
-                    });
+                this.idnUsingAddress(identity).then((res) => {
+                    resolve(res);
                 });
             });
          });
         });
+    }
+
+    idnUsingAddress(idnAddress) {
+        return new Promise((resolve, reject) => {
+        this.identityTemplate.at(idnAddress).then((inst) =>{
+            inst.userId.call().then((userId) => {
+                inst.name.call().then((name) => {
+                    this.getIdnRoles(userAddress).then((roles) =>{
+                        resolve({userId : userId, name : name, identity : identity, userAddress : userAddress, roles : roles});
+                    });                   
+                });
+            });
+        });
+    });
+
     }
 
     getIdnRoles(userAddress) {

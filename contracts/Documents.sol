@@ -10,6 +10,12 @@ import "./IdentitiesIntf.sol";
 import "./OwnableIntf.sol";
 
 
+/**
+@title Documents
+@author Eldon Hipolito
+@dev Documents contract.
+Registry for documents
+*/
 contract Documents is Ownable {
 
 
@@ -25,10 +31,20 @@ contract Documents is Ownable {
 
     event DocumentOwnershipTransferred(uint256 documentId, address previousOwner, address newOwner);
 
+    /**
+    @dev ctor
+    */
     function Documents(address _identitiesAdd) public {
         identitiesAdd = IdentitiesIntf(_identitiesAdd);
     }
 
+    /**
+    @dev Creates document
+    The creation of documents is delegated to this function since it is needed to store it on the
+    registry after doc creation.
+    @param _docName - Doc label
+    @param _checksum - SHA256 checksum of the doc
+    */
     function createDocument(string _docName, bytes32 _checksum) external {
         identitiesAdd.checkCreatorRole(msg.sender);
         count++;
@@ -39,6 +55,11 @@ contract Documents is Ownable {
         emit DocumentCreated(count, doc, msg.sender);
     }
 
+    /**
+    @dev Transfer doc ownership
+    @param documentId - Generated document ID 
+    @param newOwner - address of the newOwner(must have the corresponding role), 
+    */
     function transferDocumentOwnership(uint256 documentId, address newOwner) external {
         require(documents[documentId] != address(0));
         int ownedNdx = ownedDocIndex(documentId, msg.sender);
@@ -79,8 +100,12 @@ contract Documents is Ownable {
         docs.length--;
 
     }
-
-    function setRolesDefAdd(address _identitiesAdd) public onlyOwner {
+    /**
+    @dev To ensure flexibility of contract change, a setter has been provided such that
+    it will be possible to change the identities dependency of this contract.
+    @param _identitiesAdd - the new address of identities  
+     */
+    function setIdentitiesAdd(address _identitiesAdd) public onlyOwner {
         identitiesAdd = IdentitiesIntf(_identitiesAdd);
     }
 
