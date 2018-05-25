@@ -4,12 +4,13 @@ import RegistrationFlow from './RegistrationFlow'
 
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
-import {Row, Col, Navbar, NavItem} from 'react-materialize'
+import {Row, Col, Navbar, NavItem, Dropdown} from 'react-materialize'
 
 import IdentityVerificationList from './IdentityVerificationList'
 
 import RoleList from './RoleList'
-import DocCreationForm from './DocCreationForm';
+import DocumentCreationFlow from './DocumentCreationFlow';
+import DocumentView from './DocumentView';
 
 class DefaultContainer extends Component {
 
@@ -34,17 +35,17 @@ class DefaultContainer extends Component {
 
     choosePath() {
         switch(this.state.path) {
-            case "/" : 
-            return (<DocCreationForm  templates = {this.props.templates} instances = {this.props.instances}  />);
+            case "/createdoc" : 
+            return (<DocumentCreationFlow  templates={this.props.templates} instances={this.props.instances}  />);
             case "/register" :
-            return (<RegistrationFlow templates = {this.props.templates} instances = {this.props.instances}  />);
+            return (<RegistrationFlow templates={this.props.templates} instances={this.props.instances}  />);
             case "/verify" : 
-            return (<IdentityVerificationList templates = {this.props.templates} instances = {this.props.instances} />);
+            return (<IdentityVerificationList templates={this.props.templates} instances={this.props.instances} />);
             case "/roles" : 
-            return (<RoleList  templates = {this.props.templates} instances = {this.props.instances} />);
+            return (<RoleList  templates={this.props.templates} instances={this.props.instances} />);
 
             default:
-            return (<DocCreationForm  templates = {this.props.templates} instances = {this.props.instances}  />);
+            return (<DocumentView  user={this.props.user} templates={this.props.templates} instances={this.props.instances}  />);
         }
     }
 
@@ -83,6 +84,7 @@ class DefaultContainer extends Component {
                <Col s={12}>
                    <Navbar brand='Document management' right>
                        <NavItem onClick={() => this.handleRouting("/")} > Home </NavItem>
+                       <NavItem onClick={() => this.handleRouting("/createdoc")}>Create Docs</NavItem>
                        <NavItem onClick={() => this.handleRouting("/register")}> Register </NavItem>
                        <NavItem onClick={() => this.handleRouting("/verify")}> Verify </NavItem>
                        <NavItem onClick={() => this.handleRouting("/roles")}> Role list </NavItem>

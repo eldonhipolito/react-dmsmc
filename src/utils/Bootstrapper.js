@@ -10,6 +10,13 @@ import Addresses from '../addresses.json'
 
 var truffleContract = require("truffle-contract");
 
+let initCurrentWallet = new Promise((resolve, reject) => {
+    getWeb3.then(results => {
+        resolve(results.web3.currentProvider.publicConfigStore._state.selectedAddress);
+    });
+
+});
+
 let initContractTemplates = new Promise(function(resolve, reject) {
     var templates = {};
     getWeb3.then(results => {
@@ -70,4 +77,4 @@ function setFromDefaults(contrs, web3) {
     })
 }
 
-export {initContractTemplates, initContractInstances};
+export {initContractTemplates, initContractInstances, initCurrentWallet};

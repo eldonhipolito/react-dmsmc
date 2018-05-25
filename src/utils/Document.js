@@ -5,19 +5,32 @@ class Document {
     }
 
 
-    signers() {
-        return this.promiseWrapper((docInstance) => {
-            
-                docInstance.signersCount.call().then((c) => {
-                    let signersPromises = [];
-                    for(let ndx = 0; ndx < c; ndx++) {
-                        signersPromises.push(docInstance.signers.call(ndx));
+    signers(count) {
+        return this.promisesWrapper((docInstance) => {
+            //return new Promise((resolve, reject) => {          
+                let signersPromises = [];
+                for(let ndx = 0; ndx < count; ndx++) {
+                    signersPromises.push(docInstance.signers.call(ndx));
+                }
+                
+                return {
+                    actions : signersPromises,
+                    callback : (result) => {
+                        return result;
                     }
-                    Promise.all(signersPromises).then((signersResult) => {
-                        return signersResult;
-                    });
-                });
-            
+                };
+            //});
+        });
+    }
+
+    signerCount(){
+        return this.promiseWrapper((docInstance) => {
+            return {
+                action : docInstance.signersCount.call(),
+                callback : (result) => {
+                    return result.c[0];
+                }
+            }
         });
     }
 
@@ -66,13 +79,16 @@ class Document {
 
     addSigner(signer){
         return this.promiseWrapper((instance) => {
-            instance.addSigner(signer).then((res) => {
-                for(var i in res.logs) {
-                    if(res.logs[i].event === "SignerAdded") {
-                        return {txHash : res.tx, totalSigners : res.logs[i].args.signersCount};
+           return {
+                action : instance.addSigner(signer),
+                callback : (res) => {
+                    for(var i in res.logs) {
+                        if(res.logs[i].event === "SignerAdded") {
+                            return {txHash : res.tx, totalSigners : res.logs[i].args.signersCount};
+                        }
                     }
                 }
-            }).catch((err) => {console.log(err);});
+            };
         });
     }
 
@@ -80,8 +96,27 @@ class Document {
         return new Promise((resolve, reject) => {
 
             this.documentInstance.then((instance) => {
-                resolve(action(instance));
+                let me = action(instance);
+                me.action.then((res) => {
+                    resolve(me.callback(res));
+                });
+            }).catch((err) => {
+                reject(err);
             });
+        });
+    }
+
+    promisesWrapper(actions, requiredPromise) {
+        return new Promise((resolve, reject) => {
+                this.documentInstance.then((instance) => {
+                    let me = actions(instance);
+
+                    Promise.all(me.actions).then((res) => {
+                        resolve(me.callback(res));
+                    });
+                }).catch((err) => {
+                        reject(err);
+                });
         });
     }
     

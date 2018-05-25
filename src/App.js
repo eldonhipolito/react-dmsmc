@@ -14,12 +14,14 @@ class App extends Component {
     this.state = {
       contractInstances : {},
       contractTemplates : {},
+      currentWallet : null,
       loaded : false,
     }
     
   }
 
   componentDidMount(){
+    this.instantiateCurrentWallet();
     this.instantiateContract();
   }
 
@@ -35,9 +37,15 @@ class App extends Component {
     });
   }
 
+  instantiateCurrentWallet(){
+    context.initCurrentWallet.then((address) => {
+      this.setState({currentWallet : address});
+    });
+  }
+
   render() {
     const container = this.state.loaded ? (
-    <DefaultContainer instances={this.state.contractInstances} templates={this.state.contractTemplates} />) : ("");
+    <DefaultContainer user={this.state.currentWallet} instances={this.state.contractInstances} templates={this.state.contractTemplates} />) : ("");
     return (
       <div id="genesisContainer">
           {container}

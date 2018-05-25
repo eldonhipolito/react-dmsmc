@@ -45,12 +45,16 @@ contract('Documents', async (accounts) => {
         // Create document
         await docs.createDocument("asd", web3.sha3("asd"), {from : activeWallet});
 
+        var estimatedGas = await docs.createDocument.estimateGas("asd", web3.sha3("asd"), {from : activeWallet});
+        console.log(estimatedGas);
+
         // Check the first document
         assert.isNotNull(await Document.at(await docs.documents(1)));
 
     })
 
     it("Should be owned by the creator after creation", async () => {
+        console.log(await docs.documentOwnership(0));
         // Check document owner
         assert.equal( await Document.at(await docs.documents(1)).owner(), admin);
     })

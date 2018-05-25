@@ -75,9 +75,11 @@ class Identities {
         this.identityTemplate.at(idnAddress).then((inst) =>{
             inst.userId.call().then((userId) => {
                 inst.name.call().then((name) => {
-                    this.getIdnRoles(userAddress).then((roles) =>{
-                        resolve({userId : userId, name : name, identity : identity, userAddress : userAddress, roles : roles});
-                    });                   
+                    inst.owner.call().then((userAddress) => {
+                        this.getIdnRoles(userAddress).then((roles) =>{
+                            resolve({userId : userId, name : name, identity : idnAddress, userAddress : userAddress, roles : roles});
+                        });  
+                    });             
                 });
             });
         });

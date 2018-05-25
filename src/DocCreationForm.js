@@ -33,7 +33,7 @@ class DocCreationForm extends Component {
         e.preventDefault();
 
         this.setState({submitted : true});
-        this.state.documents.create(this.state.docName, this.state.checksum).then((res) => {
+        this.state.documents.create(this.state.docName, "0x"+this.state.checksum).then((res) => {
             this.props.parentHandler(this.props.stepNum, res);
         });
 
@@ -81,7 +81,7 @@ class DocCreationForm extends Component {
                         <input type="file" onChange={this.handleUpload}/>
                     </div>
                     <div className="file-path-wrapper">
-                        <input class="file-path validate" type="text" value={this.state.fileName}/>
+                        <input className="file-path validate" type="text" value={this.state.fileName}/>
                     </div>
                     </Col>
                     </div>
