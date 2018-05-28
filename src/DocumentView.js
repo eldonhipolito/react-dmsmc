@@ -10,32 +10,30 @@ class DocumentView extends Component {
 
         this.state = {
             documents : new Documents(this.props.instances.documents, this.props.templates.Document),
-            ownedDocsNdx : [],
-            
+            ownedDocs : [],
+            pendingDocs : [],
         }
 
     }
 
     componentDidMount(){
         this.loadOwnedDocs();
-
+        this.loadPendingDocs();
         
      }
 
     loadOwnedDocs(){
-        return this.state.documents.listOwnedDocsNdx(this.props.user).then((ndx) => {
-            this.setState({ownedDocsNdx : ndx});
-            console.log(ndx[0]);
-            this.state.documents.listOwnedDoc(ndx[0]).then((result) => {
-                console.log(result);
-            });
+        this.state.documents.loadOwnedDetailedDocs().then((res) => {
+            console.log(res);
+            this.setState({ownedDocs : res});
         });
-        
-
     }
 
     loadPendingDocs(){
-
+        this.state.documents.loadPendingDetailedDocs(this.props.user).then((res) => {
+            console.log(res);
+            this.setState({pendingDocs : res});
+        });
     }
 
 

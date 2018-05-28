@@ -31,6 +31,15 @@ contract Documents is Ownable {
 
     event DocumentOwnershipTransferred(uint256 documentId, address previousOwner, address newOwner);
 
+    function ownedDocCount() external view returns(uint){
+        return documentOwnership[msg.sender].length;
+    }
+
+    function ownedDocument(uint256 ndx) external view returns(address){
+        uint256[] memory owned = documentOwnership[msg.sender];
+        return documents[owned[ndx]];
+    }
+
     /**
     @dev ctor
     */

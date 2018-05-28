@@ -53,10 +53,15 @@ contract('Documents', async (accounts) => {
 
     })
 
+    it("Should own one document", async () => {
+        var ownedDocCount = await docs.ownedDocCount();
+        assert.isAbove(ownedDocCount.c[0], 0, 'No owned document');
+    });
+
     it("Should be owned by the creator after creation", async () => {
-        console.log(await docs.documentOwnership(0));
         // Check document owner
-        assert.equal( await Document.at(await docs.documents(1)).owner(), admin);
+        assert.equal(await Document.at(await docs.ownedDocument(0)).owner(), admin);
+        //assert.equal( await Document.at(await docs.documents(1)).owner(), admin);
     })
 
     it("Should be transferable", async () => {
