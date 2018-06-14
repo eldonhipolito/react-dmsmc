@@ -23,14 +23,16 @@ class DocumentView extends Component {
      }
 
     loadOwnedDocs(){
-        this.state.documents.loadOwnedDetailedDocs().then((res) => {
+        console.log("owned");
+        this.state.documents.loadOwnedDocDetails().then((res) => {
             console.log(res);
             this.setState({ownedDocs : res});
         });
     }
 
     loadPendingDocs(){
-        this.state.documents.loadPendingDetailedDocs(this.props.user).then((res) => {
+        console.log("pending");
+        this.state.documents.loadSignedDocumentDetails(this.props.user).then((res) => {
             console.log(res);
             this.setState({pendingDocs : res});
         });

@@ -23,6 +23,8 @@ contract Documents is Ownable {
 
     mapping(address => uint256[]) public documentOwnership;
 
+    mapping(address => uint256[]) public signerDocuments;
+
     uint256 public count;
 
     IdentitiesIntf public identitiesAdd;
@@ -57,7 +59,7 @@ contract Documents is Ownable {
     function createDocument(string _docName, bytes32 _checksum) external {
         identitiesAdd.checkCreatorRole(msg.sender);
         count++;
-        address doc = new Document(count, _docName, _checksum, msg.sender, address(identitiesAdd));
+        address doc = new Document(count, _docName, _checksum, msg.sender, address(identitiesAdd), address(this));
         documents[count] = doc;
         documentOwnership[msg.sender].push(count);
 
@@ -118,7 +120,50 @@ contract Documents is Ownable {
         identitiesAdd = IdentitiesIntf(_identitiesAdd);
     }
 
+    /**
+        @dev Register signer - doc relationship for easy access
+        @param signerAddress - wallet address of the signer
+        @param docId - document id 
+     */
+    function registerSignerToDoc(address signerAddress, uint256 docId) external {
+        require(documents[docId] != address(0));
+        uint256[] storage docNdcs = signerDocuments[signerAddress];
+        uint256 count = docNdcs.length++;
+        docNdcs[count] = docId;
+    }
 
+
+    function signerDocId(uint256 ndx) public view returns(uint) {
+        uint256[] storage docNdcs = signerDocuments[msg.sender];
+        require(docNdcs.length != 0);
+
+        return docNdcs[ndx];
+
+    }
+
+    /**
+        @dev Remove signer - doc relationship
+        @param signerAddress - wallet address of the signer
+        @param ndx - ndx of document 
+     */
+    function removeSignerToDoc(address signerAddress, uint256 ndx) external {
+        uint256[] storage docNdcs = signerDocuments[signerAddress];
+
+        require(docNdcs[ndx] < 0);
+
+        delete docNdcs[ndx];
+
+        //Move last element to deleted spot
+        docNdcs[ndx] = docNdcs[docNdcs.length - 1];
+
+        //Reduce array size
+        docNdcs.length--;
+
+    }
+
+    function signerDocumentCount() public view returns(uint) {
+        return signerDocuments[msg.sender].length;
+    }
 
 
 }

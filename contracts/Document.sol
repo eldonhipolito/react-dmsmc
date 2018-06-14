@@ -10,6 +10,8 @@ import "./SelfSignatureVerifiable.sol";
 
 import "./IdentitiesIntf.sol";
 
+import "./DocumentsIntf.sol";
+
 
 /**
 @title Document
@@ -35,6 +37,8 @@ contract Document is CustomOwnership, SignableDocument {
     Signatory[] public signatures;
 
     IdentitiesIntf public identitiesAdd;
+    
+    DocumentsIntf public documentsAdd;
 
     event DocumentSigned(address docAddress, address signer, uint totalSigned, uint signersCount);
 
@@ -43,12 +47,13 @@ contract Document is CustomOwnership, SignableDocument {
     /**
     @dev - ctor
      */
-    function Document(uint256 _id, string _docName, bytes32 _checksum, address _owner, address _identitiesAdd) public {
+    function Document(uint256 _id, string _docName, bytes32 _checksum, address _owner, address _identitiesAdd, address _documentsIntf) public {
         id = _id;
         docName = _docName;
         checksum = _checksum;
         owner = _owner;
         identitiesAdd = IdentitiesIntf(_identitiesAdd);
+        documentsAdd = DocumentsIntf(_documentsIntf);
     }
     /**
     @dev - Add signer
@@ -59,6 +64,7 @@ contract Document is CustomOwnership, SignableDocument {
         identitiesAdd.checkSignerRole(signer);
         uint length = signers.push(signer);
 
+        documentsAdd.registerSignerToDoc(signer, id);
         emit SignerAdded(address(this), msg.sender, signer, length);
     }
     /**
@@ -86,7 +92,8 @@ contract Document is CustomOwnership, SignableDocument {
         return false;
     }
 
-    function hasSigned(address signerAddress) internal view returns (bool) {
+    function hasSigned(address signerAddress) public view returns (bool) {
+        require(isSigner(signerAddress));
         for (uint i = 0; i < signatures.length; i++) {
             if (signatures[i].signer == signerAddress) {
                 return true;

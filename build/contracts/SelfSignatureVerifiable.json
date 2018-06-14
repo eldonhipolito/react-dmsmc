@@ -30,19 +30,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.18;\r\n\r\ninterface SelfSignatureVerifiable {\r\n\r\n    function isOwnSignature(bytes32 hash, bytes sig) external view returns (bool);\r\n\r\n}\r\n",
-  "sourcePath": "C:\\Users\\User.Admin\\Desktop\\sol-workspace\\react-dmsmc\\contracts\\SelfSignatureVerifiable.sol",
+  "sourcePath": "C:\\Users\\jade.crystal\\Documents\\GitHub\\react-dmsmc\\contracts\\SelfSignatureVerifiable.sol",
   "ast": {
-    "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/SelfSignatureVerifiable.sol",
+    "absolutePath": "/C/Users/jade.crystal/Documents/GitHub/react-dmsmc/contracts/SelfSignatureVerifiable.sol",
     "exportedSymbols": {
       "SelfSignatureVerifiable": [
-        679
+        949
       ]
     },
-    "id": 680,
+    "id": 950,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 669,
+        "id": 939,
         "literals": [
           "solidity",
           "^",
@@ -50,7 +50,7 @@
           ".18"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:5"
+        "src": "0:24:6"
       },
       {
         "baseContracts": [],
@@ -58,9 +58,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 679,
+        "id": 949,
         "linearizedBaseContracts": [
-          679
+          949
         ],
         "name": "SelfSignatureVerifiable",
         "nodeType": "ContractDefinition",
@@ -68,7 +68,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 678,
+            "id": 948,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -76,16 +76,16 @@
             "name": "isOwnSignature",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 674,
+              "id": 944,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 671,
+                  "id": 941,
                   "name": "hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 678,
-                  "src": "95:12:5",
+                  "scope": 948,
+                  "src": "95:12:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -93,10 +93,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 670,
+                    "id": 940,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "95:7:5",
+                    "src": "95:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -107,11 +107,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 673,
+                  "id": 943,
                   "name": "sig",
                   "nodeType": "VariableDeclaration",
-                  "scope": 678,
-                  "src": "109:9:5",
+                  "scope": 948,
+                  "src": "109:9:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -119,10 +119,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 672,
+                    "id": 942,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "109:5:5",
+                    "src": "109:5:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -132,20 +132,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "94:25:5"
+              "src": "94:25:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 677,
+              "id": 947,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 676,
+                  "id": 946,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 678,
-                  "src": "143:4:5",
+                  "scope": 948,
+                  "src": "143:4:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -153,10 +153,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 675,
+                    "id": 945,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "143:4:5",
+                    "src": "143:4:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -166,33 +166,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "142:6:5"
+              "src": "142:6:6"
             },
-            "scope": 679,
-            "src": "71:78:5",
+            "scope": 949,
+            "src": "71:78:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 680,
-        "src": "28:126:5"
+        "scope": 950,
+        "src": "28:126:6"
       }
     ],
-    "src": "0:156:5"
+    "src": "0:156:6"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/SelfSignatureVerifiable.sol",
+    "absolutePath": "/C/Users/jade.crystal/Documents/GitHub/react-dmsmc/contracts/SelfSignatureVerifiable.sol",
     "exportedSymbols": {
       "SelfSignatureVerifiable": [
-        679
+        949
       ]
     },
-    "id": 680,
+    "id": 950,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 669,
+        "id": 939,
         "literals": [
           "solidity",
           "^",
@@ -200,7 +200,7 @@
           ".18"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:5"
+        "src": "0:24:6"
       },
       {
         "baseContracts": [],
@@ -208,9 +208,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 679,
+        "id": 949,
         "linearizedBaseContracts": [
-          679
+          949
         ],
         "name": "SelfSignatureVerifiable",
         "nodeType": "ContractDefinition",
@@ -218,7 +218,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 678,
+            "id": 948,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -226,16 +226,16 @@
             "name": "isOwnSignature",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 674,
+              "id": 944,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 671,
+                  "id": 941,
                   "name": "hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 678,
-                  "src": "95:12:5",
+                  "scope": 948,
+                  "src": "95:12:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -243,10 +243,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 670,
+                    "id": 940,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "95:7:5",
+                    "src": "95:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -257,11 +257,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 673,
+                  "id": 943,
                   "name": "sig",
                   "nodeType": "VariableDeclaration",
-                  "scope": 678,
-                  "src": "109:9:5",
+                  "scope": 948,
+                  "src": "109:9:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -269,10 +269,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 672,
+                    "id": 942,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "109:5:5",
+                    "src": "109:5:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -282,20 +282,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "94:25:5"
+              "src": "94:25:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 677,
+              "id": 947,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 676,
+                  "id": 946,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 678,
-                  "src": "143:4:5",
+                  "scope": 948,
+                  "src": "143:4:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -303,10 +303,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 675,
+                    "id": 945,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "143:4:5",
+                    "src": "143:4:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -316,20 +316,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "142:6:5"
+              "src": "142:6:6"
             },
-            "scope": 679,
-            "src": "71:78:5",
+            "scope": 949,
+            "src": "71:78:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 680,
-        "src": "28:126:5"
+        "scope": 950,
+        "src": "28:126:6"
       }
     ],
-    "src": "0:156:5"
+    "src": "0:156:6"
   },
   "compiler": {
     "name": "solc",
@@ -337,5 +337,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-18T07:46:47.163Z"
+  "updatedAt": "2018-06-01T11:26:29.188Z"
 }

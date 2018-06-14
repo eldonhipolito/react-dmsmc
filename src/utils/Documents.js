@@ -17,108 +17,60 @@ class Documents {
         });
     }
 
-    allDocAddress(){
+    loadDocsForSigner(){
         return new Promise((resolve, reject) => {
-            return this.documentsInstance.count.call().then((docCount) =>{
-                let documentsPromises = [];
-                for (var ndx = 0; ndx < docCount.c[0] ; ndx++){
-                    documentsPromises.push(this.documentsInstance.documents.call(ndx + 1));
+            this.documentsInstance.signerDocumentCount().then((count) => {
+                let docPromises = [];
+
+                for(var i = 0; i < count; i++){
+                    docPromises.push(this.documentsInstance.signerDocId(i));
                 }
 
-                Promise.all(documentsPromises).then((documentAddresses) => {
-                    resolve(documentAddresses);
-                  })
-                
-            }).catch((err) => {console.log(err)});
+                Promise.all(docPromises).then((ndcs) => {
+                    let promises = [];
+                    ndcs.map((ndx) => {
+                        promises.push(this.documentsInstance.documents.call(ndx));
+                    });
 
-        });
 
-    }
-
-    allDocument(){
-        return new Promise((resolve, reject) => {
-            this.allDocAddress().then((docAddresses) => {
-                let documentPromises = [];
-                docAddresses.map((s) => {
-                    documentPromises.push(this.documentTemplate.at(s));
+                    Promise.all(promises).then((result) => {
+                        resolve(result);
+                    });
+                    
                 });
-                
-                Promise.all(documentPromises).then((docInstances) => {
-                    resolve(docInstances);
-                }); 
+
             });
+
         });
     }
 
-    documentSignerCount(){
-        return new Promise((resolve,reject) => {
-            this.allDocument().then((documents) => {
-                let promises = [];
-                documents.map((s) => {
-                    promises.push(
-                        s.signersCount.call().then((count) => {
-                            return {
-                                document : s,
-                                signerCount : count,
-                            }
+    loadSignedDocuments(userAddress){
+        //signatures
+        return new Promise((resolve, reject) => {
+            this.loadDocsForSigner().then((addresses) => {
+                let docPromises = [];
+                addresses.map((address) => {
+                    docPromises.push(
+                        this.documentTemplate.at(address).then((instance) => {
+                            return instance.hasSigned(userAddress).then((result) => {
+                                if(!result) {
+                                    return address;
+                                }
+                            });
                         })
                     );
                 });
 
-                Promise.all(promises).then((result) => {
-                    resolve(result);
-                });
-            });
-        });
-    }
-
-    loadPendingDocs(document, signerCount, userAddress){
-        return new Promise((resolve, reject) => {
-            let promises = [];
-            for(var ndx = 0; ndx < signerCount; ndx++){
-                promises.push(
-                    document.signers.call(ndx).then((signer) => {
-                       if(signer == userAddress){
-                           return document.address;
-                       }
-                    })
-                );
-            }
-
-            Promise.all(promises).then((result) => {
-                console.log("loob ad " + result);
-                resolve(result);
-            });
-        });
-
-    }
-
-    loadPendingDetailedDocs(userAddress){
-        return new Promise((resolve, reject) => {
-            this.documentSignerCount().then((docSignerDetails) => {
-                let signerPromises = [];
-                docSignerDetails.map((docSignerDetail) => {
-                    signerPromises.push(
-                        this.loadPendingDocs(docSignerDetail.document, docSignerDetail.signerCount, userAddress)
-                    );
+                Promise.all(docPromises).then((result) => {
+                    resolve(result)
                 });
 
-                Promise.all(signerPromises).then((addresses) =>{
-                    let promises = [];
-                    addresses.map((address) => {
-                        promises.push(this.loadDocDetails(address));
-                    });
-
-                    Promise.all(promises).then((res) => {
-                        console.log(res);
-                        resolve(res)
-                    });
-                });                
             });
+
         });
     }
 
-    loadOwnedDetailedDocs(){
+    loadOwnedDocDetails(){
         return new Promise((resolve, reject) => {        
             this.documentsInstance.ownedDocCount().then((count) => {
                 let docPromises = [];
@@ -129,7 +81,6 @@ class Documents {
                 Promise.all(docPromises).then((docAddresses) => {
                     let docDetailPromises = [];
                     docAddresses.map((address) => {
-                        console.log(address);
                         docDetailPromises.push(this.loadDocDetails(address));
                     });
 
@@ -139,7 +90,24 @@ class Documents {
 
                 });
             });
-        });
+        }).catch((err) => {console.log(err);});
+    }
+
+    loadSignedDocumentDetails(userAddress){
+        return new Promise((resolve, reject) => {
+            this.loadSignedDocuments(userAddress).then((addresses) => {
+                let promises = [];
+                addresses.map((address) => {
+                    promises.push(this.loadDocDetails(address));
+                })
+
+                Promise.all(promises).then((result) => {
+                    resolve(result);
+                })
+
+            });
+
+        }).catch((err) => {console.log(err);});
     }
 
     loadDocDetails(address){
