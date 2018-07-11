@@ -15,7 +15,7 @@ contract('Identities', async (accounts) => {
     let idns;
     let docs;
 
-    it("Account[0] should be able to request Self Identity verification", async () => {
+    it("Account[0] should be able to request Self Identity verification and be verified immediately", async () => {
         ecr = await ECRec.deployed();
         Documents.link("ECRecovery", ecr.address);
         idns = await Identities.new({from : accounts[0]});
@@ -25,19 +25,10 @@ contract('Identities', async (accounts) => {
 
         await idns.reqIdnVerification(idn.address);
 
-        assert.equal(await idns.unverifiedIdentities(accounts[0]), idn.address);
-
-    })
-
-    it("Account[0] should be able to verify self identity", async () => {
-      //  console.log(await rb.hasRole(web3.eth.coinbase, "admin"));
-        console.log(accounts[0]);
-        console.log(await idn.owner());
-        console.log(await idn.address);
-        await idns.verifyIdentity(accounts[0], idn.address);
-
         assert.equal(await idns.identities(accounts[0]), idn.address);
+
     })
+
      it("Account[0] should have verified role", async () => {
             assert.equal(await idns.hasRole(accounts[0], "verified"), true)
       })

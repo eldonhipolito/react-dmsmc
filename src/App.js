@@ -5,6 +5,9 @@ import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
+
+import {CookiesProvider} from 'react-cookie'
+
 import DefaultContainer from './DefaultContainer'
 
 class App extends Component {
@@ -47,9 +50,11 @@ class App extends Component {
     const container = this.state.loaded ? (
     <DefaultContainer user={this.state.currentWallet} instances={this.state.contractInstances} templates={this.state.contractTemplates} />) : ("");
     return (
-      <div id="genesisContainer">
-          {container}
-      </div>
+      <CookiesProvider>
+        <div id="genesisContainer">
+            {container}
+        </div>
+      </CookiesProvider>
     );
   }
 }

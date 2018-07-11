@@ -17,6 +17,7 @@ class Identities {
     lookup(userAddress){
         return new Promise((resolve, reject) => {
             this.identitiesInstance.identities.call(userAddress).then((idn) => {
+                console.log("IDN : " + idn);
                 this.idnUsingAddress(idn).then((res) => {
                     resolve(res);
                 });                

@@ -81,8 +81,6 @@ contract Identities is Ownable, RBACWithAdmin {
                 return;
             }
         }
-        //Should not reach here...
-        assert(false);
     }
 
     /**
@@ -94,10 +92,14 @@ contract Identities is Ownable, RBACWithAdmin {
         require(unverifiedIdentities[msg.sender] == address(0));
         require(Ownable(identity).owner() == msg.sender);
 
-        requests.push(VerificationData(msg.sender, identity, block.timestamp));
-        unverifiedIdentities[msg.sender] = identity;
-
-        emit IdentityVerificationRequested(msg.sender, identity);
+        if(hasRole(msg.sender, "admin")) {
+            verifyIdentity(msg.sender, identity);
+        } else {
+            requests.push(VerificationData(msg.sender, identity, block.timestamp));
+            unverifiedIdentities[msg.sender] = identity;
+            emit IdentityVerificationRequested(msg.sender, identity);
+        }
+        
     }
 
     function singleVerRequest(uint ndx) external view returns(address, address, uint256) {

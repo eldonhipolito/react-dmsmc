@@ -36,12 +36,12 @@ contract Identity is SelfSignatureVerifiable {
     The user/owner of this contract will have to sign a dummy text using his own private key.
     The resulting signed text will be used by this function to recover the address of the user
     to determine if he is indeed the one interacting with the dapp.
-    @param hash - text hashed through keccak256 algorithm
+    @param message - text to be signed
     @param sig - The signed text using private key
     @return bool - authenticated or not
     */
-    function authenticate(bytes32 hash, bytes sig) external view onlyOwner returns (bool) {
-        return ECRecovery.recover(hash, sig) == msg.sender;
+    function authenticate(string message, bytes sig) external view onlyOwner returns (bool) {
+        return ECRecovery.recover(keccak256(keccak256("string message"),keccak256(message)), sig) == msg.sender;
     }
 
     /**

@@ -95,9 +95,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.18;\r\n\r\n//Interfaces used by contracts depending on Documents contract\r\ncontract DocumentsIntf {\r\n\r\n\r\n    function ownedDocCount() external view returns(uint);\r\n\r\n    function ownedDocument(uint256 ndx) external view returns(address);\r\n\r\n    function registerSignerToDoc(address signerAddress, uint256 docId) external;\r\n\r\n    function signerDocId(uint256 ndx) public view returns(uint);\r\n\r\n    function removeSignerToDoc(address signerAddress, uint256 ndx) external;\r\n\r\n\r\n}\r\n",
-  "sourcePath": "C:\\Users\\jade.crystal\\Documents\\GitHub\\react-dmsmc\\contracts\\DocumentsIntf.sol",
+  "sourcePath": "C:\\Users\\User.Admin\\Desktop\\sol-workspace\\react-dmsmc\\contracts\\DocumentsIntf.sol",
   "ast": {
-    "absolutePath": "/C/Users/jade.crystal/Documents/GitHub/react-dmsmc/contracts/DocumentsIntf.sol",
+    "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/DocumentsIntf.sol",
     "exportedSymbols": {
       "DocumentsIntf": [
         876
@@ -524,7 +524,7 @@
     "src": "0:495:3"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/jade.crystal/Documents/GitHub/react-dmsmc/contracts/DocumentsIntf.sol",
+    "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/DocumentsIntf.sol",
     "exportedSymbols": {
       "DocumentsIntf": [
         876
@@ -956,5 +956,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-01T11:26:29.187Z"
+  "updatedAt": "2018-07-06T06:24:31.509Z"
 }
