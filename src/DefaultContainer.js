@@ -13,7 +13,7 @@ import IdentityVerificationList from './IdentityVerificationList'
 
 import RoleList from './RoleList'
 import DocumentCreationFlow from './DocumentCreationFlow';
-import DocumentView from './DocumentView';
+import DocumentList from './DocumentList';
 import Authentication from './Authentication';
 
 class DefaultContainer extends Component {
@@ -34,7 +34,10 @@ class DefaultContainer extends Component {
 
     authCookiesData(){
         const {cookies} = this.props;
-        return {authenticated : cookies.get("authenticated") || false, userId : cookies.get("userId") || ""};
+        return {
+                    authenticated : cookies.get("authenticated") || false,
+                    userId : cookies.get("userId") || ""
+                };
     }
 
     handleRouting(path) {
@@ -61,6 +64,8 @@ class DefaultContainer extends Component {
             return (<RoleList  templates={this.props.templates} instances={this.props.instances} />);
             case "/authenticate":
             return (<Authentication templates={this.props.templates} instances={this.props.instances} authCallback={(user) => this.authCallback(user)} />);
+            case "/docList" :
+            return (<DocumentList user={this.props.user} templates={this.props.templates} instances={this.props.instances} /> )
             case "/":
             default:
             return this.state.authData.authenticated ? (<DocumentCreationFlow  templates={this.props.templates} instances={this.props.instances}  />) : 
@@ -84,6 +89,7 @@ class DefaultContainer extends Component {
             <Col s={12}>
                 <Navbar brand='Document management' right>
                     <NavItem onClick={() => this.handleRouting("/")} > Home </NavItem>
+                    <NavItem onClick={() => this.handleRouting("/docList")}>Documents</NavItem>
                     <NavItem onClick={() => this.handleRouting("/createdoc")}>Create Docs</NavItem>
                     <NavItem onClick={() => this.handleRouting("/verify")}> Verify </NavItem>
                     <NavItem onClick={() => this.handleRouting("/roles")}> Role list </NavItem>

@@ -44,8 +44,7 @@ class Documents {
         });
     }
 
-    loadSignedDocuments(userAddress){
-        //signatures
+    loadDocForSigning(userAddress, signed){
         return new Promise((resolve, reject) => {
             this.loadDocsForSigner().then((addresses) => {
                 let docPromises = [];
@@ -53,7 +52,7 @@ class Documents {
                     docPromises.push(
                         this.documentTemplate.at(address).then((instance) => {
                             return instance.hasSigned(userAddress).then((result) => {
-                                if(!result) {
+                                if(result == signed) {
                                     return address;
                                 }
                             });
@@ -93,9 +92,9 @@ class Documents {
         }).catch((err) => {console.log(err);});
     }
 
-    loadSignedDocumentDetails(userAddress){
+    loadDocForSigningDetails(userAddress, signed){
         return new Promise((resolve, reject) => {
-            this.loadSignedDocuments(userAddress).then((addresses) => {
+            this.loadDocForSigning(userAddress, signed).then((addresses) => {
                 let promises = [];
                 addresses.map((address) => {
                     promises.push(this.loadDocDetails(address));
@@ -120,6 +119,7 @@ class Documents {
         /*haadouuukenn*/       id : id,
         /*soorryuuuken*/       docName : docName,
         /*tatatatuken*/        checksum : checksum,
+                               address  : address,
                             });
                         });
                     });
