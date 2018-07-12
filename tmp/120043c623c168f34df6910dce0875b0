@@ -1,0 +1,19 @@
+spool 5203_1_result.csv;
+set colsep ',';
+set linesize 30000;
+set pagesize 30000;
+
+SELECT * FROM TBL_FUNCTION WHERE NAME = 'CFAR';
+
+
+SELECT text FROM user_source WHERE name  = 'RETRIEVE_CLIENT_FNANC_ACT_CNT' ORDER BY line;
+
+
+SELECT text FROM user_source WHERE name  = 'RETRIEVE_CLIENT_FNANC_ACT_RNG' ORDER BY line;
+
+
+SELECT text FROM user_source WHERE name  = 'RETRIEVE_CLIENT_FNANCIAL_ACT' ORDER BY line;
+
+
+
+spool off;

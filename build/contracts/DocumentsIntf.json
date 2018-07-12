@@ -100,14 +100,14 @@
     "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/DocumentsIntf.sol",
     "exportedSymbols": {
       "DocumentsIntf": [
-        876
+        899
       ]
     },
-    "id": 877,
+    "id": 900,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 842,
+        "id": 865,
         "literals": [
           "solidity",
           "^",
@@ -123,9 +123,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 876,
+        "id": 899,
         "linearizedBaseContracts": [
-          876
+          899
         ],
         "name": "DocumentsIntf",
         "nodeType": "ContractDefinition",
@@ -133,7 +133,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 847,
+            "id": 870,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -141,22 +141,22 @@
             "name": "ownedDocCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 843,
+              "id": 866,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "148:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 846,
+              "id": 869,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 845,
+                  "id": 868,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 847,
+                  "scope": 870,
                   "src": "173:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -165,7 +165,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 844,
+                    "id": 867,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "173:4:3",
@@ -180,7 +180,7 @@
               ],
               "src": "172:6:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "126:53:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -189,7 +189,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 854,
+            "id": 877,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -197,15 +197,15 @@
             "name": "ownedDocument",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 850,
+              "id": 873,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 849,
+                  "id": 872,
                   "name": "ndx",
                   "nodeType": "VariableDeclaration",
-                  "scope": 854,
+                  "scope": 877,
                   "src": "210:11:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -214,7 +214,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 848,
+                    "id": 871,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "210:7:3",
@@ -231,15 +231,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 853,
+              "id": 876,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 852,
+                  "id": 875,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 854,
+                  "scope": 877,
                   "src": "245:7:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -248,7 +248,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 851,
+                    "id": 874,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "245:7:3",
@@ -263,7 +263,7 @@
               ],
               "src": "244:9:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "187:67:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -272,7 +272,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 861,
+            "id": 884,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -280,15 +280,15 @@
             "name": "registerSignerToDoc",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 859,
+              "id": 882,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 856,
+                  "id": 879,
                   "name": "signerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 861,
+                  "scope": 884,
                   "src": "291:21:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -297,7 +297,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 855,
+                    "id": 878,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "291:7:3",
@@ -311,10 +311,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 858,
+                  "id": 881,
                   "name": "docId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 861,
+                  "scope": 884,
                   "src": "314:13:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -323,7 +323,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 857,
+                    "id": 880,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "314:7:3",
@@ -340,12 +340,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 860,
+              "id": 883,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "337:0:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "262:76:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -354,7 +354,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 868,
+            "id": 891,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -362,15 +362,15 @@
             "name": "signerDocId",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 864,
+              "id": 887,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 863,
+                  "id": 886,
                   "name": "ndx",
                   "nodeType": "VariableDeclaration",
-                  "scope": 868,
+                  "scope": 891,
                   "src": "367:11:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -379,7 +379,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 862,
+                    "id": 885,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "367:7:3",
@@ -396,15 +396,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 867,
+              "id": 890,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 866,
+                  "id": 889,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 868,
+                  "scope": 891,
                   "src": "400:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -413,7 +413,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 865,
+                    "id": 888,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "400:4:3",
@@ -428,7 +428,7 @@
               ],
               "src": "399:6:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "346:60:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -437,7 +437,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 875,
+            "id": 898,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -445,15 +445,15 @@
             "name": "removeSignerToDoc",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 873,
+              "id": 896,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 870,
+                  "id": 893,
                   "name": "signerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 875,
+                  "scope": 898,
                   "src": "441:21:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -462,7 +462,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 869,
+                    "id": 892,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "441:7:3",
@@ -476,10 +476,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 872,
+                  "id": 895,
                   "name": "ndx",
                   "nodeType": "VariableDeclaration",
-                  "scope": 875,
+                  "scope": 898,
                   "src": "464:11:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -488,7 +488,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 871,
+                    "id": 894,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "464:7:3",
@@ -505,19 +505,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 874,
+              "id": 897,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "485:0:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "414:72:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 877,
+        "scope": 900,
         "src": "92:401:3"
       }
     ],
@@ -527,14 +527,14 @@
     "absolutePath": "/C/Users/User.Admin/Desktop/sol-workspace/react-dmsmc/contracts/DocumentsIntf.sol",
     "exportedSymbols": {
       "DocumentsIntf": [
-        876
+        899
       ]
     },
-    "id": 877,
+    "id": 900,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 842,
+        "id": 865,
         "literals": [
           "solidity",
           "^",
@@ -550,9 +550,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 876,
+        "id": 899,
         "linearizedBaseContracts": [
-          876
+          899
         ],
         "name": "DocumentsIntf",
         "nodeType": "ContractDefinition",
@@ -560,7 +560,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 847,
+            "id": 870,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -568,22 +568,22 @@
             "name": "ownedDocCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 843,
+              "id": 866,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "148:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 846,
+              "id": 869,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 845,
+                  "id": 868,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 847,
+                  "scope": 870,
                   "src": "173:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -592,7 +592,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 844,
+                    "id": 867,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "173:4:3",
@@ -607,7 +607,7 @@
               ],
               "src": "172:6:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "126:53:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -616,7 +616,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 854,
+            "id": 877,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -624,15 +624,15 @@
             "name": "ownedDocument",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 850,
+              "id": 873,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 849,
+                  "id": 872,
                   "name": "ndx",
                   "nodeType": "VariableDeclaration",
-                  "scope": 854,
+                  "scope": 877,
                   "src": "210:11:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -641,7 +641,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 848,
+                    "id": 871,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "210:7:3",
@@ -658,15 +658,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 853,
+              "id": 876,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 852,
+                  "id": 875,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 854,
+                  "scope": 877,
                   "src": "245:7:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -675,7 +675,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 851,
+                    "id": 874,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "245:7:3",
@@ -690,7 +690,7 @@
               ],
               "src": "244:9:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "187:67:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -699,7 +699,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 861,
+            "id": 884,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -707,15 +707,15 @@
             "name": "registerSignerToDoc",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 859,
+              "id": 882,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 856,
+                  "id": 879,
                   "name": "signerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 861,
+                  "scope": 884,
                   "src": "291:21:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -724,7 +724,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 855,
+                    "id": 878,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "291:7:3",
@@ -738,10 +738,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 858,
+                  "id": 881,
                   "name": "docId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 861,
+                  "scope": 884,
                   "src": "314:13:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -750,7 +750,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 857,
+                    "id": 880,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "314:7:3",
@@ -767,12 +767,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 860,
+              "id": 883,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "337:0:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "262:76:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -781,7 +781,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 868,
+            "id": 891,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -789,15 +789,15 @@
             "name": "signerDocId",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 864,
+              "id": 887,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 863,
+                  "id": 886,
                   "name": "ndx",
                   "nodeType": "VariableDeclaration",
-                  "scope": 868,
+                  "scope": 891,
                   "src": "367:11:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -806,7 +806,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 862,
+                    "id": 885,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "367:7:3",
@@ -823,15 +823,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 867,
+              "id": 890,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 866,
+                  "id": 889,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 868,
+                  "scope": 891,
                   "src": "400:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -840,7 +840,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 865,
+                    "id": 888,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "400:4:3",
@@ -855,7 +855,7 @@
               ],
               "src": "399:6:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "346:60:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -864,7 +864,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 875,
+            "id": 898,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -872,15 +872,15 @@
             "name": "removeSignerToDoc",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 873,
+              "id": 896,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 870,
+                  "id": 893,
                   "name": "signerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 875,
+                  "scope": 898,
                   "src": "441:21:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -889,7 +889,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 869,
+                    "id": 892,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "441:7:3",
@@ -903,10 +903,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 872,
+                  "id": 895,
                   "name": "ndx",
                   "nodeType": "VariableDeclaration",
-                  "scope": 875,
+                  "scope": 898,
                   "src": "464:11:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -915,7 +915,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 871,
+                    "id": 894,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "464:7:3",
@@ -932,19 +932,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 874,
+              "id": 897,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "485:0:3"
             },
-            "scope": 876,
+            "scope": 899,
             "src": "414:72:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 877,
+        "scope": 900,
         "src": "92:401:3"
       }
     ],
@@ -956,5 +956,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-07-06T06:24:31.509Z"
+  "updatedAt": "2018-07-12T10:47:49.364Z"
 }

@@ -41,17 +41,21 @@ contract Identity is SelfSignatureVerifiable {
     @return bool - authenticated or not
     */
     function authenticate(string message, bytes sig) external view onlyOwner returns (bool) {
-        return ECRecovery.recover(keccak256(keccak256("string message"),keccak256(message)), sig) == msg.sender;
+        return ECRecovery.recover(hashDataForSig(message), sig) == msg.sender;
+    }
+
+    function hashDataForSig(string message) internal pure returns (bytes32) {
+        return keccak256(keccak256("string message"),keccak256(message));
     }
 
     /**
         @dev This checks whether the signed text is signed by the owner of this contract
-        @param hash - The text hashed through keccak256 algorithm.
+        @param message - The text hashed through keccak256 algorithm.
         @param sig - The signed text using the private key of the owner of this contract.
         @return bool
     */
-    function isOwnSignature(bytes32 hash, bytes sig) external view returns (bool) {
-        return ECRecovery.recover(hash, sig) == owner;
+    function isOwnSignature(string message, bytes sig) external view returns (bool) {
+        return ECRecovery.recover(hashDataForSig(message), sig) == owner;
     }
 
 

@@ -1,7 +1,20 @@
 class Document {
 
-    constructor(documentTemplate, docAddress) {
+    constructor(documentTemplate, docAddress, web3Instance) {
         this.documentInstance = documentTemplate.at(docAddress);
+        this.web3Instance = web3Instance;
+    }
+
+
+    checksum(){
+        return this.promiseWrapper((docInstance) => {
+            return {
+                action : docInstance.checksum.call(),
+                callback : (result) => {
+                    return result;
+                }
+            }
+        });
     }
 
 
@@ -20,6 +33,48 @@ class Document {
                     }
                 };
             //});
+        });
+    }
+
+    callSign(userAddress, docInstance){
+        return new Promise((resolve, reject) => {
+        
+            this.checksum().then((data) => {
+                let web3 = this.web3Instance;
+                const msg = [
+                    {
+                        type: 'string',
+                        name: 'message',
+                        value: data
+                    }
+                ];
+                web3.currentProvider.sendAsync({
+                    method: 'eth_signTypedData',
+                    params: [msg, userAddress],
+                    from : userAddress,
+                }, (err,signed) =>{
+                    docInstance.sign(data, signed).then((signResult) => {
+                        resolve(signResult);
+                    });
+                });
+
+            });
+
+        });
+    }
+
+    sign(userAddress){
+        return this.promiseWrapper((docInstance) => {
+            return {
+                action : this.callSign(userAddress),
+                callback : (res) => {
+                    for(var i in res.logs) {
+                        if(res.logs[i].event === "DocumentSigned") {
+                            return {txHash : res.tx, totalSigners : res.logs[i].args.signersCount, totalSigned : res.logs[i].args.totalSigned};
+                        }
+                    }
+                }
+            };
         });
     }
 

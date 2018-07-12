@@ -69,17 +69,22 @@ contract Document is CustomOwnership, SignableDocument {
     }
     /**
     @dev - Sign function for signers
-    @param data - keccak256 representation of the data signed.
-    @param sig - data signed with the private key of the signer using ECDSA algorithm provided in web3
+    @param message - keccak256 representation of the message signed.
+    @param sig - message signed with the private key of the signer using ECDSA algorithm provided in web3
     */
-    function sign(bytes32 data, bytes sig) external {
+    function sign(string message, bytes sig) external {
         require(isSigner(msg.sender));
         require(!hasSigned(msg.sender));
-        require(ECRecovery.recover(data, sig) == msg.sender);
+        bytes32 hashed = hashDataForSig(message);
+        require(ECRecovery.recover(hashed, sig) == msg.sender);
 
-        uint totalSigned = signatures.push(Signatory(msg.sender, data, sig));
+        uint totalSigned = signatures.push(Signatory(msg.sender, hashed, sig));
 
-        emit DocumentSigned(address(this), msg.sender, totalSigned, signatures.length);
+        emit DocumentSigned(address(this), msg.sender, totalSigned, signers.length);
+    }
+
+    function hashDataForSig(string message) internal pure returns (bytes32) {
+        return keccak256(keccak256("string message"),keccak256(message));
     }
 
     function isSigner(address signerAddress) internal view returns (bool){

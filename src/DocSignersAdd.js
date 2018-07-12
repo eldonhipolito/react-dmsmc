@@ -17,7 +17,7 @@ class DocSignersAdd extends Component {
         super(props);
         this.state = {
             showError : false,
-            document : new Document(this.props.templates.Document, this.props.args.document),
+            document : new Document(this.props.templates.Document, this.props.args.document, this.props.templates.web3Instance),
             identities : new Identities(this.props.instances.identities, this.props.templates.Identity),
             signers : [],
             addingSigner : false,
