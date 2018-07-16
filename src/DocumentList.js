@@ -4,6 +4,7 @@ import Documents from "./utils/Documents";
 import {Collapsible, CollapsibleItem, MenuItem, Badge, Breadcrumb, Row, Collection} from 'react-materialize'
 import DocumentCollectionItem from './MicroComponents/DocumentCollectionItem'
 import CenteredContentGrid from  './MicroComponents/CenteredContentGrid'
+import DocView from './DocView'
 
 
 class DocumentList extends Component {
@@ -48,15 +49,19 @@ class DocumentList extends Component {
         });
     }
 
+    loadDocView(address){
+        this.props.handleRouting('/entryView', DocView, {documentAddress : address, templates : this.props.templates});
+    }
+
     
     render(){
         let ownedHeader = <span> Owned Documents </span>;
         let pendingHeader = <span> Pending Documents </span>;
         let signedHeader = <span> Signed Documents </span>;
 
-        const ownedDocElems = this.state.ownedDocs.map((ownedDoc) => <DocumentCollectionItem document={ownedDoc}/>)
-        const pendingDocElems = this.state.pendingDocs.map((pendingDoc) => <DocumentCollectionItem document={pendingDoc}/>)
-        const signedDocElems = this.state.signedDocs.map((signedDoc) => <DocumentCollectionItem document={signedDoc}/>)
+        const ownedDocElems = this.state.ownedDocs.map((ownedDoc) => <DocumentCollectionItem document={ownedDoc} loadDocView={(address) => this.loadDocView(address)} />)
+        const pendingDocElems = this.state.pendingDocs.map((pendingDoc) => <DocumentCollectionItem document={pendingDoc} loadDocView={(address) => this.loadDocView(address)}/>)
+        const signedDocElems = this.state.signedDocs.map((signedDoc) => <DocumentCollectionItem document={signedDoc} loadDocView={(address) => this.loadDocView(address)}/>)
 
         if(ownedDocElems.length > 0) {
             ownedHeader = <span> Owned Documents <Badge newIcon>{ownedDocElems.length}</Badge> </span>

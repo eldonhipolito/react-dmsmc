@@ -53,7 +53,7 @@ class Document {
                     params: [msg, userAddress],
                     from : userAddress,
                 }, (err,signed) =>{
-                    docInstance.sign(data, signed).then((signResult) => {
+                    docInstance.sign(data, signed.result).then((signResult) => {
                         resolve(signResult);
                     });
                 });
@@ -66,7 +66,7 @@ class Document {
     sign(userAddress){
         return this.promiseWrapper((docInstance) => {
             return {
-                action : this.callSign(userAddress),
+                action : this.callSign(userAddress, docInstance),
                 callback : (res) => {
                     for(var i in res.logs) {
                         if(res.logs[i].event === "DocumentSigned") {
@@ -91,43 +91,27 @@ class Document {
 
 
     val() {
-       return this.promiseWrapper((docInstance) => {
-        let promises = [];
-        promises.push(docInstance.id.call());
-        
-        promises.push(docInstance.docName.call());
-
-        promises.push(docInstance.checksum.call());
-        
-
-        promises.push(
-           this.signers()
-        );
-
-        promises.push(
-            new Promise((resolve, reject) => {
-                docInstance.signatureCount.call().then((c) => {
-                    let signaturePromises = [];
-                    for(let ndx = 0; ndx < c; ndx++) {
-                        signaturePromises.push(docInstance.singleSignatory.call(ndx));
+       return this.promisesWrapper((docInstance) => {
+            let promises = [];
+            promises.push(docInstance.id.call());
+            promises.push(docInstance.docName.call());
+            promises.push(docInstance.checksum.call());
+            promises.push(docInstance.signersCount.call());
+            promises.push(docInstance.signatureCount.call());
+            
+            return {
+                actions : promises,
+                callback : (res) => {
+                    console.log(res);
+                    return {
+                        id : res[0],
+                        docName : res[1],
+                        checksum : res[2],
+                        signers : res[3],
+                        signatures : res[4],
                     }
-                    Promise.all(signaturePromises).then((signatureResult) => {
-                        resolve(signatureResult);
-                    });
-                });
-            })
-        );
-        
-        Promise.all(promises).then((res) => {
-            let resolution = {};
-
-            resolution.id = res[0];
-            resolution.docName = res[1];
-            resolution.checksum = res[2];
-            resolution.signers = res[3];
-            resolution.signatures = res[4];
-            return resolution;
-        });
+                }
+            };
 
        });
     }
