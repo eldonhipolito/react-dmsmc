@@ -15,7 +15,7 @@ import RoleList from './RoleList'
 import DocumentCreationFlow from './DocumentCreationFlow';
 import DocumentList from './DocumentList';
 import Authentication from './Authentication';
-import DocView from './DocView';
+import Documents from './Documents';
 
 class DefaultContainer extends Component {
 
@@ -29,8 +29,6 @@ class DefaultContainer extends Component {
         this.state = {
             path : "/",
             authData : this.authCookiesData(),
-            entryElem : "",
-            entryProps : {},
         }
         this.handleRouting = this.handleRouting.bind(this);
     }
@@ -47,10 +45,6 @@ class DefaultContainer extends Component {
         this.setState({path : path});
     }
 
-    handleSubViewRouting(path, elem, props) {
-        this.setState({path : path, entryElem : elem, entryProps : props});
-    }
-
     authCallback(user) {
         const {cookies} = this.props;
         cookies.set('userId', user, {path: '/'});
@@ -60,7 +54,6 @@ class DefaultContainer extends Component {
     }
 
     choosePath() {
-        console.log(this.state.entryElem);
         switch(this.state.path) {
             case "/createdoc" : 
             return (<DocumentCreationFlow  templates={this.props.templates} instances={this.props.instances}  />);
@@ -72,18 +65,45 @@ class DefaultContainer extends Component {
             return (<RoleList  templates={this.props.templates} instances={this.props.instances} />);
             case "/authenticate":
             return (<Authentication templates={this.props.templates} instances={this.props.instances} authCallback={(user) => this.authCallback(user)} />);
-            case "/docList" :
-            return (<DocumentList user={this.props.user} templates={this.props.templates} instances={this.props.instances} handleRouting={(path, elem, props) => this.handleSubViewRouting(path, elem, props)} /> )
-            case "/entryView" :
-            console.log(this.state.entryProps);
-            return (<this.state.entryElem  {...this.state.entryProps}  />);
+            case "/documents" :
+            return (<Documents user={this.props.user} templates={this.props.templates} instances={this.props.instances} /> )
             case "/":
             default:
-            return this.state.authData.authenticated ? (<DocumentCreationFlow  templates={this.props.templates} instances={this.props.instances}  />) : 
- (<Authentication templates={this.props.templates} instances={this.props.instances} authCallback={(user) => this.authCallback(user)} />);  
+            return this.state.authData.authenticated ? (<DocumentCreationFlow  templates={this.props.templates} instances={this.props.instances}  />)
+             : (<Authentication templates={this.props.templates} instances={this.props.instances} authCallback={(user) => this.authCallback(user)} />);  
 
+        }
     }
-}
+
+    chooseMenu(){
+        if(this.state.authData.authenticated){
+           return (
+                <div>
+                    <Navbar brand='Document management' right>
+                        <NavItem onClick={() => this.handleRouting("/")} > Home </NavItem>
+                        <Dropdown trigger={<NavItem>Document</NavItem>}>
+                            <NavItem onClick={() => this.handleRouting("/createdoc")}>Create</NavItem>
+                            <NavItem onClick={() => this.handleRouting("/documents")}>List</NavItem>
+                        </Dropdown >
+                        <Dropdown trigger={<NavItem>Account</NavItem>}>
+                            <NavItem onClick={() => this.handleRouting("/verify")}> Verify </NavItem>
+                            <NavItem onClick={() => this.handleRouting("/roles")}> Role list </NavItem>
+                            <NavItem onClick={() => this.doSignout()}> Sign out </NavItem>
+                        </Dropdown >
+                    </Navbar>
+                </div>
+                );
+        } else {
+            return (
+                <div>
+                <Navbar brand='Document management' right>
+                    <NavItem onClick={() => this.handleRouting("/authenticate")} > Sign in </NavItem>
+                    <NavItem onClick={() => this.handleRouting("/register")}> Register </NavItem>
+                </Navbar>
+                </div>
+            );
+        }
+    }
 
     doSignout(){
         const {cookies} = this.props;
@@ -96,28 +116,7 @@ class DefaultContainer extends Component {
 
 
     render() {
-        const menu =  this.state.authData.authenticated ? (
-            <Col s={12}>
-                <Navbar brand='Document management' right>
-                    <NavItem onClick={() => this.handleRouting("/")} > Home </NavItem>
-                    <Dropdown trigger={<NavItem>Document</NavItem>}>
-                        <NavItem onClick={() => this.handleRouting("/createdoc")}>Create</NavItem>
-                        <NavItem onClick={() => this.handleRouting("/docList")}>List</NavItem>
-                    </Dropdown >
-                    <Dropdown trigger={<NavItem>Account</NavItem>}>
-                        <NavItem onClick={() => this.handleRouting("/verify")}> Verify </NavItem>
-                        <NavItem onClick={() => this.handleRouting("/roles")}> Role list </NavItem>
-                        <NavItem onClick={() => this.doSignout()}> Sign out </NavItem>
-                    </Dropdown >
-                    
-                </Navbar>
-            </Col>
-        ) : ( <Col s={12}>
-                            <Navbar brand='Document management' right>
-                                <NavItem onClick={() => this.handleRouting("/authenticate")} > Sign in </NavItem>
-                                <NavItem onClick={() => this.handleRouting("/register")}> Register </NavItem>
-                            </Navbar>
-                        </Col>);
+        const menu = this.chooseMenu();
         return (
         <div className="defaultContainer">
             <Row>

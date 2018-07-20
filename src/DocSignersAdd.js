@@ -103,7 +103,6 @@ class DocSignersAdd extends Component {
 
 
     render() {
-        console.log(this.state.signers);
         const items = this.state.signerIdentities.map((s) =>  
         <SignerCollectionItem editable={false} parentHandler={((args) => this.handleStep(args))} identity={s} elementIcon="remove_circle_outline" action="remove"/>)
 

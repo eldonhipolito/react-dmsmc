@@ -3,7 +3,6 @@ import getWeb3 from './utils/getWeb3';
 import Documents from "./utils/Documents";
 import {Collapsible, CollapsibleItem, MenuItem, Badge, Breadcrumb, Row, Collection} from 'react-materialize'
 import DocumentCollectionItem from './MicroComponents/DocumentCollectionItem'
-import CenteredContentGrid from  './MicroComponents/CenteredContentGrid'
 import DocView from './DocView'
 
 
@@ -17,40 +16,72 @@ class DocumentList extends Component {
             ownedDocs : [],
             pendingDocs : [],
             signedDocs : [],
+            pendingDetailedDocs : [],
+            signedDetailedDocs : []
+
         }
 
     }
 
     componentDidMount(){
         this.loadOwnedDocs();
-        this.loadPendingDocs();
-        this.loadSignedDocs();
-        
+        this.loadDocsForSigning();        
      }
 
     loadOwnedDocs(){
-        console.log("owned");
         this.state.documents.loadOwnedDocDetails().then((res) => {
-            console.log(res);
             this.setState({ownedDocs : res});
         });
     }
 
-    loadPendingDocs(){
-        this.state.documents.loadDocForSigningDetails(this.props.user, false).then((res) => {
-            console.log("owned " + res)
-            this.setState({pendingDocs : res});
+    loadDocsForSigning(){
+        this.state.documents.loadDocForSigning(this.props.user).then((resMap) => {
+            let signedDocs = [];
+            let pendingDocs = [];
+            resMap.map((res) => { ;
+                if(res.signed == true) {
+                    signedDocs.push(res.address);
+                }else {
+                    pendingDocs.push(res.address);
+                }
+            });
+
+            this.setState({
+                signedDocs : signedDocs,
+                pendingDocs : pendingDocs
+            });
+
         });
     }
 
-    loadSignedDocs(){
-        this.state.documents.loadDocForSigningDetails(this.props.user, true).then((res) => {
-            this.setState({signedDocs : res});
-        });
+    loadDetailedPendingDocs(){
+        if(this.state.pendingDetailedDocs.length === 0){
+            let promises = [];
+            this.state.pendingDocs.map((address) => {
+                promises.push(this.state.documents.loadDocDetails(address));
+            });
+
+            Promise.all(promises).then((res) => {
+                this.setState({pendingDetailedDocs : res});
+            });
+        }
+    }
+
+    loadDetailedSignedDocs(){
+        if(this.state.signedDetailedDocs.length === 0) {
+            let promises = [];
+            this.state.signedDocs.map((address) => {
+                promises.push(this.state.documents.loadDocDetails(address));
+            });
+
+            Promise.all(promises).then((res) => {
+                this.setState({signedDetailedDocs : res});
+            });
+        } 
     }
 
     loadDocView(address){
-        this.props.handleRouting('/entryView', DocView, {documentAddress : address, templates : this.props.templates});
+        this.props.loadDocument(address);
     }
 
     
@@ -60,48 +91,48 @@ class DocumentList extends Component {
         let signedHeader = <span> Signed Documents </span>;
 
         const ownedDocElems = this.state.ownedDocs.map((ownedDoc) => <DocumentCollectionItem document={ownedDoc} loadDocView={(address) => this.loadDocView(address)} />)
-        const pendingDocElems = this.state.pendingDocs.map((pendingDoc) => <DocumentCollectionItem document={pendingDoc} loadDocView={(address) => this.loadDocView(address)}/>)
-        const signedDocElems = this.state.signedDocs.map((signedDoc) => <DocumentCollectionItem document={signedDoc} loadDocView={(address) => this.loadDocView(address)}/>)
+        const pendingDocElems = this.state.pendingDetailedDocs.map((pendingDoc) => <DocumentCollectionItem document={pendingDoc} loadDocView={(address) => this.loadDocView(address)}/>)
+        const signedDocElems = this.state.signedDetailedDocs.map((signedDoc) => <DocumentCollectionItem document={signedDoc} loadDocView={(address) => this.loadDocView(address)}/>)
 
         if(ownedDocElems.length > 0) {
             ownedHeader = <span> Owned Documents <Badge newIcon>{ownedDocElems.length}</Badge> </span>
         }
 
-        if(pendingDocElems.length > 0) {
-            pendingHeader = <span> Pending Documents <Badge newIcon>{pendingDocElems.length}</Badge> </span>
+        if(this.state.pendingDocs.length > 0) {
+            pendingHeader = <span> Pending Documents <Badge newIcon>{this.state.pendingDocs.length}</Badge> </span>
         }
 
-        if(signedDocElems.length > 0) {
-            signedHeader = <span> Signed Documents <Badge newIcon>{signedDocElems.length}</Badge> </span>
+        if(this.state.signedDocs.length > 0) {
+            signedHeader = <span> Signed Documents <Badge newIcon>{this.state.signedDocs.length}</Badge> </span>
         }
 
         return(
-            <CenteredContentGrid>
+            <div>
                 <Row>
                     <Breadcrumb>
                         <MenuItem>Documents</MenuItem>
                     </Breadcrumb>
                 </Row>
                 <Row>
-                    <Collapsible defaultActiveKey={0}>
+                    <Collapsible>
                         <CollapsibleItem header={ownedHeader} icon='filter_drama'>
                             <Collection>
                                 {ownedDocElems}
                             </Collection>
                         </CollapsibleItem>
-                        <CollapsibleItem header={pendingHeader} icon='place'>
+                        <CollapsibleItem header={pendingHeader} onClick={() => this.loadDetailedPendingDocs()} icon='place'>
                             <Collection>
                                 {pendingDocElems}
                             </Collection>
                         </CollapsibleItem>
-                        <CollapsibleItem header={signedHeader} icon='whatshot'>
+                        <CollapsibleItem header={signedHeader} onClick={() => this.loadDetailedSignedDocs()} icon='whatshot'>
                             <Collection>
                                 {signedDocElems}
                             </Collection>
                         </CollapsibleItem>
                     </Collapsible>
                 </Row>
-            </CenteredContentGrid>
+            </div>
         );
     }
 

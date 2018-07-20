@@ -32,7 +32,6 @@ class Documents {
                         promises.push(this.documentsInstance.documents.call(ndx));
                     });
 
-
                     Promise.all(promises).then((result) => {
                         resolve(result);
                     });
@@ -44,28 +43,27 @@ class Documents {
         });
     }
 
-    loadDocForSigning(userAddress, signed){
+    loadDocForSigning(userAddress){
         return new Promise((resolve, reject) => {
             this.loadDocsForSigner().then((addresses) => {
-                let docPromises = [];
+                let promises = [];
                 addresses.map((address) => {
-                    docPromises.push(
-                        this.documentTemplate.at(address).then((instance) => {
-                            return instance.hasSigned(userAddress).then((result) => {
-                                if(result == signed) {
-                                    return address;
-                                }
+                    promises.push(this.documentTemplate.at(address).then((instance) => {
+                        return instance.hasSigned(userAddress).then((result) => {
+                            return({
+                                address : address,
+                                signed  : result
                             });
-                        })
-                    );
+                        });
+                    }))
                 });
 
-                Promise.all(docPromises).then((result) => {
-                    resolve(result)
+                Promise.all(promises).then((res) => {
+                    resolve(res);
                 });
 
             });
-
+            
         });
     }
 
@@ -89,23 +87,6 @@ class Documents {
 
                 });
             });
-        }).catch((err) => {console.log(err);});
-    }
-
-    loadDocForSigningDetails(userAddress, signed){
-        return new Promise((resolve, reject) => {
-            this.loadDocForSigning(userAddress, signed).then((addresses) => {
-                let promises = [];
-                addresses.map((address) => {
-                    promises.push(this.loadDocDetails(address));
-                })
-
-                Promise.all(promises).then((result) => {
-                    resolve(result);
-                })
-
-            });
-
         }).catch((err) => {console.log(err);});
     }
 

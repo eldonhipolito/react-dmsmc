@@ -2,7 +2,12 @@ class Document {
 
     constructor(documentTemplate, docAddress, web3Instance) {
         this.documentInstance = documentTemplate.at(docAddress);
-        this.web3Instance = web3Instance;
+        this.web3Instance = web3Instance;        
+    }
+    
+
+    loadDoc(documentTemplate, docAddress){
+        this.documentInstance = documentTemplate.at(docAddress);
     }
 
 
@@ -102,7 +107,6 @@ class Document {
             return {
                 actions : promises,
                 callback : (res) => {
-                    console.log(res);
                     return {
                         id : res[0],
                         docName : res[1],
