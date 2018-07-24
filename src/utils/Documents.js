@@ -67,7 +67,7 @@ class Documents {
         });
     }
 
-    loadOwnedDocDetails(){
+    loadOwnedDoc(){
         return new Promise((resolve, reject) => {        
             this.documentsInstance.ownedDocCount().then((count) => {
                 let docPromises = [];
@@ -76,15 +76,7 @@ class Documents {
                 }
 
                 Promise.all(docPromises).then((docAddresses) => {
-                    let docDetailPromises = [];
-                    docAddresses.map((address) => {
-                        docDetailPromises.push(this.loadDocDetails(address));
-                    });
-
-                    Promise.all(docDetailPromises).then((res) => {
-                        resolve(res);
-                    });
-
+                    resolve(docAddresses);
                 });
             });
         }).catch((err) => {console.log(err);});
@@ -93,16 +85,17 @@ class Documents {
     loadDocDetails(address){
         return new Promise((resolve, reject) => {
             this.documentTemplate.at(address).then((instance) => {
-                return instance.docName.call().then((docName) =>{
-                    return instance.checksum.call().then((checksum) => {
-                        return instance.id.call().then((id) => {
-                            resolve({
-        /*haadouuukenn*/       id : id,
-        /*soorryuuuken*/       docName : docName,
-        /*tatatatuken*/        checksum : checksum,
-                               address  : address,
-                            });
-                        });
+                let promises = [];
+                promises.push(instance.docName.call());
+                promises.push(instance.checksum.call());
+                promises.push(instance.id.call());
+
+                Promise.all(promises).then((res) => {
+                    resolve({
+                            docName : res[0],
+                            checksum : res[1],
+                            id : res[2],
+                            address  : address,
                     });
                 });
             })

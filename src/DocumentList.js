@@ -16,6 +16,7 @@ class DocumentList extends Component {
             ownedDocs : [],
             pendingDocs : [],
             signedDocs : [],
+            ownedDetailedDocs : [],
             pendingDetailedDocs : [],
             signedDetailedDocs : []
 
@@ -28,8 +29,10 @@ class DocumentList extends Component {
         this.loadDocsForSigning();        
      }
 
+ 
+
     loadOwnedDocs(){
-        this.state.documents.loadOwnedDocDetails().then((res) => {
+        this.state.documents.loadOwnedDoc().then((res) => {
             this.setState({ownedDocs : res});
         });
     }
@@ -52,6 +55,19 @@ class DocumentList extends Component {
             });
 
         });
+    }
+
+    loadOwnedDetailedDocs(){
+        if(this.state.ownedDetailedDocs.length === 0){
+            let docDetailPromises = [];
+            this.state.ownedDocs.map((address) => {
+                docDetailPromises.push(this.state.documents.loadDocDetails(address));
+            });
+
+            Promise.all(docDetailPromises).then((res) => {
+                this.setState({ownedDetailedDocs : res});
+            });
+        }
     }
 
     loadDetailedPendingDocs(){
@@ -90,20 +106,20 @@ class DocumentList extends Component {
         let pendingHeader = <span> Pending Documents </span>;
         let signedHeader = <span> Signed Documents </span>;
 
-        const ownedDocElems = this.state.ownedDocs.map((ownedDoc) => <DocumentCollectionItem document={ownedDoc} loadDocView={(address) => this.loadDocView(address)} />)
+        const ownedDocElems = this.state.ownedDetailedDocs.map((ownedDoc) => <DocumentCollectionItem document={ownedDoc} loadDocView={(address) => this.loadDocView(address)} />)
         const pendingDocElems = this.state.pendingDetailedDocs.map((pendingDoc) => <DocumentCollectionItem document={pendingDoc} loadDocView={(address) => this.loadDocView(address)}/>)
         const signedDocElems = this.state.signedDetailedDocs.map((signedDoc) => <DocumentCollectionItem document={signedDoc} loadDocView={(address) => this.loadDocView(address)}/>)
 
-        if(ownedDocElems.length > 0) {
-            ownedHeader = <span> Owned Documents <Badge newIcon>{ownedDocElems.length}</Badge> </span>
+        if(this.state.ownedDocs.length > 0) {
+            ownedHeader = <span> Owned Documents <Badge>{this.state.ownedDocs.length}</Badge> </span>
         }
 
         if(this.state.pendingDocs.length > 0) {
-            pendingHeader = <span> Pending Documents <Badge newIcon>{this.state.pendingDocs.length}</Badge> </span>
+            pendingHeader = <span> Pending Documents <Badge>{this.state.pendingDocs.length}</Badge> </span>
         }
 
         if(this.state.signedDocs.length > 0) {
-            signedHeader = <span> Signed Documents <Badge newIcon>{this.state.signedDocs.length}</Badge> </span>
+            signedHeader = <span> Signed Documents <Badge>{this.state.signedDocs.length}</Badge> </span>
         }
 
         return(
@@ -115,7 +131,7 @@ class DocumentList extends Component {
                 </Row>
                 <Row>
                     <Collapsible>
-                        <CollapsibleItem header={ownedHeader} icon='filter_drama'>
+                        <CollapsibleItem header={ownedHeader} icon='filter_drama' onClick={() => this.loadOwnedDetailedDocs()}>
                             <Collection>
                                 {ownedDocElems}
                             </Collection>

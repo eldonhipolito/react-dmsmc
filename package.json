@@ -59,7 +59,8 @@
     "react-dom": "^15.4.2",
     "react-materialize": "^2.2.0",
     "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "react-tooltip": "^3.6.1"
   },
   "scripts": {
     "start": "node scripts/start.js",

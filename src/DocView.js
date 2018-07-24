@@ -4,6 +4,7 @@ import {Row, Input, Chip, Button, Col} from 'react-materialize';
 import InfiniteProgressBar from './MicroComponents/InfiniteProgressBar';
 import ErrorPrompt from './MicroComponents/ErrorPrompt';
 import Submit from './MicroComponents/Submit';
+import ReactTooltip from 'react-tooltip';
 
 class DocView extends Component {
 
@@ -70,18 +71,26 @@ class DocView extends Component {
                     </Row>
                     <Row/>
                     <Row>
-                        <Col s={2}/>
+                        <Col s={1}/>
                         <Col s={2}>
-                            <Button floating large className='green pulse' waves='light' icon='thumb_up' />
+                            <Button floating large className='green pulse' data-for='approve' data-tip='Approve' waves='light' icon='thumb_up' />
+                            <ReactTooltip id='approve' place="bottom" type="dark" effect="solid"/>
                         </Col>
                         <Col s={2}>
-                            <Button floating large className='red' waves='light' icon='thumb_down' />
+                            <Button floating large className='red' data-for='disapprove' data-tip='Disapprove'  waves='light' icon='thumb_down' />
+                            <ReactTooltip id='disapprove' place="bottom" type="dark" effect="solid"/>
                         </Col>
                         <Col s={2}>
-                            <Button floating large className='blue' waves='light' icon='transfer_within_a_station' />
+                            <Button floating large className='blue' data-for='transfer-ownership' data-tip='Transfer Ownership' waves='light' icon='swap_horiz' />
+                            <ReactTooltip id='transfer-ownership' place="bottom" type="dark" effect="solid"/>
                         </Col>
                         <Col s={2}>
-                            <Button floating large className='yellow' waves='light' icon='save_alt' />
+                            <Button floating large className='violet' data-for='verify-document' data-tip='Verify Document' waves='light' icon='perm_media' />
+                            <ReactTooltip id='verify-document' place="bottom" type="dark" effect="solid"/>
+                        </Col>
+                        <Col s={2}>
+                            <Button floating large className='orange' data-for='download' data-tip='Download'  waves='light' icon='save_alt' />
+                            <ReactTooltip id='download' place="bottom" type="dark" effect="solid"/>
                         </Col>
                     </Row>
                     <ErrorPrompt visible={this.state.showError} />
