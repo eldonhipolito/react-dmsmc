@@ -1,8 +1,0 @@
-
-INSERT INTO error_code(id, error_code_description) VALUES(502, 'Transaction marked for recon');
-INSERT INTO bpgw_configurations (configuration_description, configuration_value) VALUES ('new_tran_timeout', 10);
-INSERT INTO bpgw_configurations (configuration_description, configuration_value) VALUES ('waiting_tran_timeout', 15);
-
-INSERT INTO bpgw_transaction_code (id, transaction_code_description, is_enabled, bpgw_partner_type_id) values(601, 'Cash In Others', 1, 3);
-UPDATE bpgw_transaction_code SET is_enabled = 1 WHERE id IN(401, 501, 601);
-UPDATE bpgw_transaction_code SET bpgw_partner_type_id = 3 WHERE id = 501;
