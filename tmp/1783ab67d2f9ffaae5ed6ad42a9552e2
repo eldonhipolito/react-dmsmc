@@ -1,0 +1,12 @@
+1.	MBS deployment:
+	Source files and scripts are located at /home/ftpdata/banko/production_builds/mbs/14MAY2012
+	
+		a. Run this script in the BANKO_REPORT schema and take note of the results:
+			
+			i.	del_from_reports_table.sql
+
+		b. Deploy MBSReportsETL.jar to /etc/init.d/
+
+2.	Run this command in the terminal and take note of the results.
+
+		a. java -jar /etc/init.d/MBSReportsETL.jar ALL 2012-05-12 2012-05-13
